@@ -17,8 +17,13 @@ $f3 = Base::instance();
 $f3->route('GET /', function (){
     // display the home page
     $view = new Template();
-    //echo"Pets Home";
     echo $view->render('views/home.html');
+});
+
+$f3->route('GET|POST /order', function (){
+    // display the home page
+    $view = new Template();
+    echo $view->render('views/orderPage.html');
 });
 
 // run Fat-Free
