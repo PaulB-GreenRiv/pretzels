@@ -1,0 +1,31 @@
+html {
+    background-color: lightgray;
+}
+
+body {
+    background-color: lightgray;
+}
+
+#mainPage {
+    align-content: center;
+    text-align: center;
+    background-color: lightgray;
+}
+
+#mainPage #squishPage {
+    width: 80%;
+    background-color: white;
+}
+
+#mainPage strong {
+    font-style: italic;
+}
+
+#mainPage img {
+    border: 1px solid black;
+}
+
+#mainPage #startOrder {
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
