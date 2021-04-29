@@ -12,6 +12,18 @@ body {
     background-color: lightgray;
 }
 
+#mainPage #mainNav {
+    background-color: darkgray;
+    width: 100%;
+}
+
+#mainNav li {
+    float: left;
+    list-style-type: none;
+    margin: 10px;
+    font-weight: bold;
+}
+
 #mainPage #squishPage {
     width: 80%;
     background-color: white;
@@ -23,6 +35,15 @@ body {
 
 #mainPage img {
     border: 1px solid black;
+    border-radius: 10px;
+}
+
+#quotes {
+    border: 1px solid lightgray;
+}
+
+#quotes li {
+    list-style-type: none;
 }
 
 #mainPage #startOrder {
