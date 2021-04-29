@@ -1,0 +1,16 @@
+{
+  "name": "328/pets",
+  "authors": [
+    {
+      "name": "Yurii Zhuk",
+      "email": "Yzhuk@mail.greenriver.edu"
+    },
+    {
+      "name": "Paul Butler",
+      "email": "Pbutler10@mail.greenriver.edu"
+    }
+  ],
+  "require": {
+    "bcosca/fatfree-core": "dev-master"
+  }
+}
