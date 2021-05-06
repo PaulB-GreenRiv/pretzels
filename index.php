@@ -17,7 +17,7 @@ $f3 = Base::instance();
 $f3->route('GET /', function (){
     // display the home page
     $view = new Template();
-    echo $view->render('views/home.html');
+    echo $view->render('views/info.html');
 });
 
 $f3->route('GET|POST /order', function (){
