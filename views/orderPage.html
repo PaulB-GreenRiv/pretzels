@@ -2,9 +2,76 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/styles.css">
+
+    <title>Order Now!</title>
 </head>
 <body>
-    <h1>Under Construction</h1>
+    <h1>Construct Your Pretzel</h1>
+    <form action="#" method="post" class="form-horizontal">
+
+        <!--Type of Pretzel-->
+        <div class="container row form-group" id="pretzelType">
+            <h2>Pretzel Type</h2>
+            <!--Select a Pretzel-->
+            <label class="col"><input type="radio" name="pretzType" id="regular" value="Regular"> Regular</label>
+            <label class="col"><input type="radio" name="pretzType" id="stuffed" value="Stuffed"> Stuffed</label>
+            <label class="col"><input type="radio" name="pretzType" id="bitesize" value="Bitesize"> Bitesize</label>
+        </div>
+
+        <h1>Fields for all Pretzels</h1>
+        <!--Fields for all Pretzels-->
+        <div class="container row form-group" id="anyFields">
+            <h2>Whole Wheat</h2>
+            <!--Whole Wheat-->
+            <label><input type="checkbox" name="isWholeWheat" value="yesWholeWheat"> Whole Wheat</label>
+
+            <h2>Toppings</h2>
+            <!--Toppings-->
+            <label><input type="checkbox" name="toppings[]" value="salt"> Salt</label>
+            <label><input type="checkbox" name="toppings[]" value="pepper"> Pepper</label>
+            <label><input type="checkbox" name="toppings[]" value="cheese"> Cheese</label>
+            <label><input type="checkbox" name="toppings[]" value="paprika"> Paprika</label>
+            <label><input type="checkbox" name="toppings[]" value="anchovies"> Anchovies</label>
+
+        </div>
+
+        <h1>Stuffed Pretzel Field</h1>
+        <!--Stuffed Pretzel Fields-->
+        <div class="container" id="stuffedFields">
+
+            <h2>Stuffing</h2>
+            <!--Stuffing-->
+            <select id="stuffing" class="form-control" name="stuffing">
+                <option value="cheese"> Cheese</option>
+                <option value="tuna"> Tuna</option>
+                <option value="bacon"> Bacon</option>
+            </select>
+
+        </div>
+
+        <h1>Pretzel Bites Field</h1>
+        <!--Pretzel Bites Fields-->
+        <div class="container" id="bitesFields">
+
+            <h2>Dipping Sauce</h2>
+            <!--Dipping Sauce-->
+            <select id="dipping" class="form-control" name="sauce">
+                <option value="cheese"> Cheese</option>
+                <option value="ketchup"> Ketchup</option>
+                <option value="bbq"> Barbecue Sauce</option>
+            </select>
+
+        </div>
+
+        <div class="btn btn-primary">
+            <input class="form-control btn btn-default"
+                   type="submit" value="Next">
+        </div>
+
+    </form>
 </body>
 </html>

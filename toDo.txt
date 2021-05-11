@@ -33,5 +33,5 @@ Paul:
     !Adding Page: User Page
     !Routing Page: Pretzel Summary Page
     !Routing Page: User Page
-    Adding HTML Code to: Pretzel Form
+    !Adding HTML Code to: Pretzel Form
 Yurii:
