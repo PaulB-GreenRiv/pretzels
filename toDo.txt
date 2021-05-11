@@ -29,5 +29,9 @@ Other:
 Who is doing what (Put a ! before any finished sections)
 
 Paul:
-
+    !Adding Page: Pretzel Summary Page
+    !Adding Page: User Page
+    !Routing Page: Pretzel Summary Page
+    !Routing Page: User Page
+    Adding HTML Code to: Pretzel Form
 Yurii:
