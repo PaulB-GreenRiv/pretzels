@@ -1,0 +1,33 @@
+Page key:
+    Home Page: (home.html)
+    Pretzel Form (orderPage.html)
+    Pretzel Summary Page ()
+    User Page ()
+
+-Work that needs to be done-
+
+Pages to add:
+    Pretzel Summary Page
+    User Page
+
+Pages to route:
+    Pretzel Summary Page
+    User Page
+
+Pages to add HTML code to:
+    Pretzel Form
+    Pretzel Summary Page
+    User Page
+
+Pages to stylize:
+    Pretzel Form
+    Pretzel Summary Page
+    User Page
+
+Other:
+
+Who is doing what (Put a ! before any finished sections)
+
+Paul:
+
+Yurii:
