@@ -5,6 +5,9 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
+//Start a session
+session_start();
+
 // require autoload file
 require_once('vendor/autoload.php');
 
@@ -27,15 +30,25 @@ $f3->route( 'GET|POST /home', function (){
 });
 
 $f3->route('GET|POST /order', function (){
+    //Reinitialize session array
+    $_SESSION = array();
+
     // display the home page
-    $view = new Template();
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $_SESSION['pretzType'] = $_POST['pretzType'];
+        $_SESSION['isWholeWheat'] = $_POST['isWholeWheat'];
+        $_SESSION['toppings'] = $_POST['toppings'];
+        $_SESSION['stuffing'] = $_POST['stuffing'];
+        $_SESSION['sauce'] = $_POST['sauce'];
         header('location: summary');
     }
+
+    $view = new Template();
     echo $view->render('views/orderPage.html');
 });
 
 $f3->route('GET|POST /summary', function (){
+    var_dump($_SESSION);
     // display the home page
     $view = new Template();
     echo $view->render('views/orderSummary.html');
