@@ -27,12 +27,13 @@
             Stuffing
             Pretzel Bites
         -->
-        <h3 id="summPretzType">Pretzel Type: </h3>
-        <h3 id="summWholWheat">Whole Wheat: </h3>
-        <h3>Toppings: </h3>
+        <h3 id="summPretzType">Pretzel Type: {{ @SESSION.pretzType }}</h3>
+        <h3 id="summWholWheat">Whole Wheat: {{ @SESSION.isWholeWheat }}</h3>
+        <h3>Toppings: {{ @SESSION.toppings }}</h3>
         <p id="summToppings"></p>
-        <h3 id="summStuffing">Stuffing: </h3>
-        <h3 id="summBitesAmnt">Ammount of Bites: </h3>
+        <h3 id="summStuffing">Stuffing: {{ @SESSION.stuffing }}</h3>
+        <h3 id="summSauce">Dipping Sauce: {{ @SESSION.sauce }}</h3>
+        <h3 id="summBitesAmnt">Ammount of Bites: {{ @SESSION.amount }}</h3>
 
     </div>
     <h2 id="TotalPrice">Price: $1000</h2>

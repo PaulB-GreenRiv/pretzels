@@ -36,10 +36,17 @@ $f3->route('GET|POST /order', function (){
     // display the home page
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['pretzType'] = $_POST['pretzType'];
-        $_SESSION['isWholeWheat'] = $_POST['isWholeWheat'];
-        $_SESSION['toppings'] = $_POST['toppings'];
+
+        $isWW = $_POST['isWholeWheat'];
+        if ($isWW == "isWholeWheat") {
+            $_SESSION['isWholeWheat'] = "Yes";
+        } else {
+            $_SESSION['isWholeWheat'] = "No";
+        }
+        $_SESSION['toppings'] = implode(", ", $_POST['toppings']);
         $_SESSION['stuffing'] = $_POST['stuffing'];
         $_SESSION['sauce'] = $_POST['sauce'];
+        $_SESSION['amount'] = $_POST['amount'];
         header('location: summary');
     }
 
@@ -48,7 +55,7 @@ $f3->route('GET|POST /order', function (){
 });
 
 $f3->route('GET|POST /summary', function (){
-    var_dump($_SESSION);
+    //var_dump($_SESSION);
     // display the home page
     $view = new Template();
     echo $view->render('views/orderSummary.html');
