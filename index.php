@@ -38,7 +38,7 @@ $f3->route('GET|POST /order', function (){
         $_SESSION['pretzType'] = $_POST['pretzType'];
 
         $isWW = $_POST['isWholeWheat'];
-        if ($isWW == "isWholeWheat") {
+        if ($isWW == "yesWholeWheat") {
             $_SESSION['isWholeWheat'] = "Yes";
         } else {
             $_SESSION['isWholeWheat'] = "No";
@@ -55,7 +55,6 @@ $f3->route('GET|POST /order', function (){
 });
 
 $f3->route('GET|POST /summary', function (){
-    //var_dump($_SESSION);
     // display the home page
     $view = new Template();
     echo $view->render('views/orderSummary.html');
