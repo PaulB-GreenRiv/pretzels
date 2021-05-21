@@ -17,5 +17,31 @@
             <li><a href="user">Sign in</a></li>
         </ul>
     </div>
+
+    <h1>Order Summary</h1>
+    <div class="container" id="orderSumm">
+        <!--
+            Pretzel Type
+            is it Whole Wheat?
+            Toppings
+            Stuffing
+            Pretzel Bites
+        -->
+        <h3 id="summPretzType">Pretzel Type: {{ @SESSION.pretzType }}</h3>
+        <h3 id="summWholWheat">Whole Wheat: {{ @SESSION.isWholeWheat }}</h3>
+        <h3>Toppings: {{ @SESSION.toppings }}</h3>
+        <p id="summToppings"></p>
+
+        <check if="{{ @SESSION.pretzType == 'Stuffed' }}">
+            <h3 id="summStuffing">Stuffing: {{ @SESSION.stuffing }}</h3>
+        </check>
+
+        <check if="{{ @SESSION.pretzType == 'Bitesize' }}">
+            <h3 id="summSauce">Dipping Sauce: {{ @SESSION.sauce }}</h3>
+            <h3 id="summBitesAmnt">Ammount of Bites: {{ @SESSION.amount }}</h3>
+        </check>
+
+    </div>
+    <h2 id="TotalPrice">Price: $1000</h2>
 </body>
 </html>
