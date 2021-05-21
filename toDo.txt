@@ -6,28 +6,33 @@ Page key:
 
 -Work that needs to be done-
 
-Pages to add:
+Catching up with the dating assignment:
+- Form validation
+-- Pretzel Type - manditory
+-- Whole wheat -
+-- Toppings -
+-- Stuffing - manditory*
+-- Dipping Sauce -
+-- Amount - manditory*
+* - only if stuffed/bitesized
+- Reduce redundant code / Templating
+- Sticky form
 
-Pages to route:
-
-Pages to add HTML code to:
-    Pretzel Form
-    Pretzel Summary Page
-    User Page
-
-Pages to stylize:
-    Pretzel Summary Page
-    User Page
-
-Other:
+Other changes:
+- Ability to order multiple pretzels
+- Form stylization
+- Calculate price of pretzels (displays in form)
+- Add a pretzel class
 
 Who is doing what (Put a ! before any finished sections)
 
 Paul:
-    !Adding Page: Pretzel Summary Page
-    !Adding Page: User Page
-    !Routing Page: Pretzel Summary Page
-    !Routing Page: User Page
-    !Adding HTML Code to: Pretzel Form
+- Add Pretzel class
+- Form Validation
+- Sticky form
+
 Yurii:
-    test
+- Reduce redundant code / Templating
+- Form Stylization
+- Ability to order multiple pretzels
+- Calculate price of pretzels (displays in form)
