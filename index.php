@@ -35,9 +35,11 @@ $f3->route('GET|POST /order', function ($f3){
     //Reinitialize session array
     $_SESSION = array();
 
+//    $_SESSION['pretzel'] = new Pretzel();
+
     $userType = "";
     $userWheat = "";
-    $userToppings = array();
+    $userToppings = array("Nothing");
     $userStuffing = "";
     $userSauce = "";
     $userAmnt = "";
@@ -46,7 +48,6 @@ $f3->route('GET|POST /order', function ($f3){
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $userType = $_POST['pretzType'];
-        $userWheat = $_POST['isWholeWheat'];
         $userStuffing = $_POST['stuffing'];
         $userSauce = $_POST['sauce'];
         $userAmnt = $_POST['amount'];
@@ -60,11 +61,13 @@ $f3->route('GET|POST /order', function ($f3){
         }
 
         // Checks to see if toppings were chosen
-        if (empty($_POST['toppings'])) {
+        if (!empty($_POST['toppings'])) {
             $userToppings = $_POST['toppings'];
+            $_SESSION['toppings'] = implode(", ", $userToppings);
         }
         else {
-            $userToppings = implode(", ", $_POST['toppings']);
+            $userToppings = $_POST['toppings'];
+            $_SESSION['toppings'] = array();
         }
 
         // Validate Stuffing, if user chose Stuffed
@@ -89,18 +92,30 @@ $f3->route('GET|POST /order', function ($f3){
 
         $isWW = $_POST['isWholeWheat'];
         if ($isWW == "yesWholeWheat") {
-            $_SESSION['isWholeWheat'] = "Yes";
+            $userWheat = "Yes";
         } else {
-            $_SESSION['isWholeWheat'] = "No";
+            $userWheat = "No";
         }
-        $_SESSION['toppings'] = $userToppings;
-        $_SESSION['sauce'] = $_POST['sauce'];
+
+        $_SESSION['isWholeWheat'] = $userWheat;
+        $_SESSION['sauce'] = $userSauce;
 
         // Continue if there are no errors
         if (empty($f3->get('errors'))) {
             header('location: summary');
         }
     }
+
+    $f3->set('userType', $userType);
+    $f3->set('types', getTypes());
+    $f3->set('userWheat', $userWheat);
+    $f3->set('userToppings', $userToppings);
+    $f3->set('toppings', getToppings());
+    $f3->set('userStuffing', $userStuffing);
+    $f3->set('stuffings', getStuffings());
+    $f3->set('userSauce', $userSauce);
+    $f3->set('sauces', getSauces());
+    $f3->set('userAmnt', $userAmnt);
 
     $view = new Template();
     echo $view->render('views/orderPage.html');

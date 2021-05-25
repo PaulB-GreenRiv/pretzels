@@ -22,5 +22,6 @@ function validateStuffing($stuffing)
 
 function validateAmount($amount)
 {
+    $amount = (int)$amount;
     return (is_int($amount) && $amount >= 1);
 }

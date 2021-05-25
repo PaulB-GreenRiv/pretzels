@@ -16,9 +16,16 @@
         <div class="container row form-group" id="pretzelType">
             <h2>Pretzel Type *</h2>
             <!--Select a Pretzel-->
-            <label class="col"><input type="radio" name="pretzType" id="regular" value="Regular"> Regular</label>
+            <repeat group="{{ @types }}" value="{{ @type }}">
+                <label class="col"><input type="radio" name="pretzType"
+                id="{{ @type }} " value="{{ @type }}"
+                    <check if="{{ $type == @userType }}">checked="checked"</check>>
+                    {{ ucfirst(@type) }}
+                </input></label><br>
+            </repeat>
+            <!--<label class="col"><input type="radio" name="pretzType" id="regular" value="Regular"> Regular</label>
             <label class="col"><input type="radio" name="pretzType" id="stuffed" value="Stuffed"> Stuffed</label>
-            <label class="col"><input type="radio" name="pretzType" id="bitesize" value="Bitesize"> Bitesize</label>
+            <label class="col"><input type="radio" name="pretzType" id="bitesize" value="Bitesize"> Bitesize</label>-->
         </div>
         <check if="{{ isset(@errors['pretzType']) }}">
             <span class="err">{{ @errors['pretzType'] }}</span>
@@ -29,15 +36,18 @@
         <div class="container row form-group" id="anyFields">
             <h2>Whole Wheat</h2>
             <!--Whole Wheat-->
-            <label><input type="checkbox" name="isWholeWheat" value="yesWholeWheat"> Whole Wheat</label>
+            <label><input type="checkbox" name="isWholeWheat" value="yesWholeWheat"
+                <check if="{{ @userWheat == 'Yes' }}">checked="checked"</check>> Whole Wheat</label>
 
             <h2>Toppings</h2>
             <!--Toppings-->
-            <label><input type="checkbox" name="toppings[]" value="salt"> Salt</label>
-            <label><input type="checkbox" name="toppings[]" value="pepper"> Pepper</label>
-            <label><input type="checkbox" name="toppings[]" value="cheese"> Cheese</label>
-            <label><input type="checkbox" name="toppings[]" value="paprika"> Paprika</label>
-            <label><input type="checkbox" name="toppings[]" value="anchovies"> Anchovies</label>
+            <repeat group="{{ @toppings }}" value="{{ @topping }}">
+                <label><input type="checkbox" name="toppings[]"
+                id="{{ @topping }}" value="{{ @topping }}"
+                <check if="{{ in_array(@topping, @userToppings) }}"> checked="checked" </check>>
+                    {{ ucfirst(@topping) }}
+                </input></label>
+            </repeat>
 
         </div>
 
@@ -48,9 +58,13 @@
             <h2>Stuffing **</h2>
             <!--Stuffing-->
             <select id="stuffing" class="form-control" name="stuffing">
-                <option value="cheese"> Cheese</option>
+                <repeat group="{{ @stuffings }}" value="{{ @stuffing }}">
+                    <option value="{{ @stuffing }}"
+                    <check if="{{ $stuffing == @userStuffing }}">selected</check>>{{ ucfirst(@stuffing) }}</option>
+                </repeat>
+                <!--<option value="cheese"> Cheese</option>
                 <option value="tuna"> Tuna</option>
-                <option value="bacon"> Bacon</option>
+                <option value="bacon"> Bacon</option>-->
             </select>
             <check if="{{ isset(@errors['pretzStuffing']) }}">
                 <span class="err">{{ @errors['pretzStuffing'] }}</span>
@@ -65,13 +79,17 @@
             <h2>Dipping Sauce</h2>
             <!--Dipping Sauce-->
             <select id="dipping" class="form-control" name="sauce">
-                <option value="cheese"> Cheese</option>
+                <repeat group="{{ @sauces }}" value="{{ @sauce }}">
+                    <option value="{{ @sauce }}"
+                    <check if="{{ $sauce == @userSauce }}">selected</check>>{{ ucfirst(@sauce) }}</option>
+                </repeat>
+                <!--<option value="cheese"> Cheese</option>
                 <option value="ketchup"> Ketchup</option>
-                <option value="bbq"> Barbecue Sauce</option>
+                <option value="bbq"> Barbecue Sauce</option>-->
             </select>
 
             <label for="amount"><h2>Amount # **</h2></label>
-            <input type="number" class="form-control" name="amount" id="amount">
+            <input type="number" class="form-control" name="amount" id="amount" value="{{ @userAmnt }}">
             <check if="{{ isset(@errors['pretzAmnt']) }}">
                 <span class="err">{{ @errors['pretzAmnt'] }}</span>
             </check>

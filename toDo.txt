@@ -28,7 +28,7 @@ Who is doing what (Put a ! before any finished sections)
 
 Paul:
 - Add Pretzel class
-- Form Validation
+- !Form Validation
 - Sticky form
 
 Yurii:
