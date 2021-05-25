@@ -14,12 +14,15 @@
 
         <!--Type of Pretzel-->
         <div class="container row form-group" id="pretzelType">
-            <h2>Pretzel Type</h2>
+            <h2>Pretzel Type *</h2>
             <!--Select a Pretzel-->
             <label class="col"><input type="radio" name="pretzType" id="regular" value="Regular"> Regular</label>
             <label class="col"><input type="radio" name="pretzType" id="stuffed" value="Stuffed"> Stuffed</label>
             <label class="col"><input type="radio" name="pretzType" id="bitesize" value="Bitesize"> Bitesize</label>
         </div>
+        <check if="{{ isset(@errors['pretzType']) }}">
+            <span class="err">{{ @errors['pretzType'] }}</span>
+        </check>
 
         <h1>Fields for all Pretzels</h1>
         <!--Fields for all Pretzels-->
@@ -42,13 +45,16 @@
         <!--Stuffed Pretzel Fields-->
         <div class="container" id="stuffedFields">
 
-            <h2>Stuffing</h2>
+            <h2>Stuffing **</h2>
             <!--Stuffing-->
             <select id="stuffing" class="form-control" name="stuffing">
                 <option value="cheese"> Cheese</option>
                 <option value="tuna"> Tuna</option>
                 <option value="bacon"> Bacon</option>
             </select>
+            <check if="{{ isset(@errors['pretzStuffing']) }}">
+                <span class="err">{{ @errors['pretzStuffing'] }}</span>
+            </check>
 
         </div>
 
@@ -64,9 +70,11 @@
                 <option value="bbq"> Barbecue Sauce</option>
             </select>
 
-            <label for="amount"><h2>Amount #</h2></label>
+            <label for="amount"><h2>Amount # **</h2></label>
             <input type="number" class="form-control" name="amount" id="amount">
-
+            <check if="{{ isset(@errors['pretzAmnt']) }}">
+                <span class="err">{{ @errors['pretzAmnt'] }}</span>
+            </check>
         </div>
 
         <div class="btn btn-primary">
