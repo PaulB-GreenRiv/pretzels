@@ -43,3 +43,7 @@
     margin-top: 1%;
     margin-bottom: 1%;
 }
+
+#bites_div, #stuffed_div {
+    display: none;
+}

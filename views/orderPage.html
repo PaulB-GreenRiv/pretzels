@@ -17,7 +17,7 @@
             <h2>Pretzel Type *</h2>
             <!--Select a Pretzel-->
             <repeat group="{{ @types }}" value="{{ @type }}">
-                <label class="col"><input type="radio" name="pretzType"
+                <label class="col"><input onclick="showContent(this)" type="radio" name="pretzType"
                 id="{{ @type }} " value="{{ @type }}"
                     <check if="{{ $type == @userType }}">checked="checked"</check>>
                     {{ ucfirst(@type) }}
@@ -53,7 +53,7 @@
             </div>
         </div>
 
-        <div>
+        <div id="stuffed_div">
             <h1>Stuffed Pretzel Field</h1>
             <!--Stuffed Pretzel Fields-->
             <div class="container" id="stuffedFields">
@@ -76,7 +76,7 @@
             </div>
         </div>
 
-        <div>
+        <div id="bites_div">
             <h1>Pretzel Bites Field</h1>
             <!--Pretzel Bites Fields-->
             <div class="container" id="bitesFields">
@@ -106,5 +106,7 @@
         </div>
 
     </form>
+
+    <script src="scripts/orderDisplay.js"></script>
 </body>
 </html>
