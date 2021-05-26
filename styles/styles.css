@@ -47,3 +47,9 @@
 #bites_div, #stuffed_div {
     display: none;
 }
+
+.sticky-right {
+    position: static;
+    min-height: max-content;
+
+}
