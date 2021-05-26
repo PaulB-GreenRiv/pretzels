@@ -18,7 +18,7 @@
             <!--Select a Pretzel-->
             <repeat group="{{ @types }}" value="{{ @type }}">
                 <label class="col"><input onclick="showContent(this)" type="radio" name="pretzType"
-                id="{{ @type }} " value="{{ @type }}"
+                id="{{ @type }} " value="{{ @type }} "
                     <check if="{{ $type == @userType }}">checked="checked"</check>>
                     {{ ucfirst(@type) }}
                 </input></label><br>

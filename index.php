@@ -9,9 +9,7 @@ error_reporting(E_ALL);
 session_start();
 
 // require autoload file
-require_once ('vendor/autoload.php');
-require_once ('model/data-layer.php');
-require_once ('model/validation.php');
+require_once('vendor/autoload.php');
 
 // :: invoke static method, -> invoke instance method
 // instantiate Fat-Free
@@ -31,91 +29,29 @@ $f3->route( 'GET|POST /home', function (){
     echo $view->render('views/home.html');
 });
 
-$f3->route('GET|POST /order', function ($f3){
+$f3->route('GET|POST /order', function (){
     //Reinitialize session array
     $_SESSION = array();
 
-//    $_SESSION['pretzel'] = new Pretzel();
-
-    $userType = "";
-    $userWheat = "";
-    $userToppings = array("Nothing");
-    $userStuffing = "";
-    $userSauce = "";
-    $userAmnt = "";
-
     // display the home page
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-        $userType = $_POST['pretzType'];
-        $userStuffing = $_POST['stuffing'];
-        $userSauce = $_POST['sauce'];
-        $userAmnt = $_POST['amount'];
-
-        // Validate Pretzel Type
-        if (validateType($userType)) {
-            $_SESSION['pretzType'] = $userType;
-        }
-        else {
-            $f3->set('errors["pretzType"]', 'Please select a valid Type');
-        }
-
-        // Checks to see if toppings were chosen
-        if (!empty($_POST['toppings'])) {
-            $userToppings = $_POST['toppings'];
-            $_SESSION['toppings'] = implode(", ", $userToppings);
-        }
-        else {
-            $userToppings = $_POST['toppings'];
-            $_SESSION['toppings'] = array();
-        }
-
-        // Validate Stuffing, if user chose Stuffed
-        if ($userType == "Stuffed") {
-            if (validateStuffing($userStuffing)) {
-                $_SESSION['stuffing'] = $userStuffing;
-            }
-            else {
-                $f3->set('errors["pretzStuffing"]', 'Please select a valid Stuffing');
-            }
-        }
-
-        // Validate Amount, if user chose Bitesize
-        if ($userType == "Bitesize") {
-            if (validateAmount($userAmnt)) {
-                $_SESSION['amount'] = $userAmnt;
-            }
-            else {
-                $f3->set('errors["pretzAmnt"]', 'Please select a valid amount (1 or more)');
-            }
-        }
+        // TODO: I guess here, based on pretzel type, may be validation of only single
+        // TODO: type of pretzel( Regular, Stuffed or Bitesize). For example if Bitesize
+        // TODO: is selected, we don't validate stuffed and not even add it to SESSION.
+        $_SESSION['pretzType'] = $_POST['pretzType'];
 
         $isWW = $_POST['isWholeWheat'];
         if ($isWW == "yesWholeWheat") {
-            $userWheat = "Yes";
+            $_SESSION['isWholeWheat'] = "Yes";
         } else {
-            $userWheat = "No";
+            $_SESSION['isWholeWheat'] = "No";
         }
-
-        $_SESSION['isWholeWheat'] = $userWheat;
-        $_SESSION['sauce'] = $userSauce;
-
-        // Continue if there are no errors
-        if (empty($f3->get('errors'))) {
-            header('location: summary');
-        }
+        $_SESSION['toppings'] = implode(", ", $_POST['toppings']);
+        $_SESSION['stuffing'] = $_POST['stuffing'];
+        $_SESSION['sauce'] = $_POST['sauce'];
+        $_SESSION['amount'] = $_POST['amount'];
+        header('location: summary');
     }
-
-    $f3->set('userType', $userType);
-    $f3->set('types', getTypes());
-    $f3->set('userWheat', $userWheat);
-    $f3->set('userToppings', $userToppings);
-    $f3->set('toppings', getToppings());
-    $f3->set('userStuffing', $userStuffing);
-    $f3->set('stuffings', getStuffings());
-    $f3->set('userSauce', $userSauce);
-    $f3->set('sauces', getSauces());
-    $f3->set('userAmnt', $userAmnt);
 
     $view = new Template();
     echo $view->render('views/orderPage.html');
