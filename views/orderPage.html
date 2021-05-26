@@ -31,70 +31,75 @@
             <span class="err">{{ @errors['pretzType'] }}</span>
         </check>
 
-        <h1>Fields for all Pretzels</h1>
-        <!--Fields for all Pretzels-->
-        <div class="container row form-group" id="anyFields">
-            <h2>Whole Wheat</h2>
-            <!--Whole Wheat-->
-            <label><input type="checkbox" name="isWholeWheat" value="yesWholeWheat"
-                <check if="{{ @userWheat == 'Yes' }}">checked="checked"</check>> Whole Wheat</label>
+        <div>
+            <h1>Fields for all Pretzels</h1>
+            <!--Fields for all Pretzels-->
+            <div class="container row form-group" id="anyFields">
+                <h2>Whole Wheat</h2>
+                <!--Whole Wheat-->
+                <label><input type="checkbox" name="isWholeWheat" value="yesWholeWheat"
+                    <check if="{{ @userWheat == 'Yes' }}">checked="checked"</check>> Whole Wheat</label>
 
-            <h2>Toppings</h2>
-            <!--Toppings-->
-            <repeat group="{{ @toppings }}" value="{{ @topping }}">
-                <label><input type="checkbox" name="toppings[]"
-                id="{{ @topping }}" value="{{ @topping }}"
-                <check if="{{ in_array(@topping, @userToppings) }}"> checked="checked" </check>>
-                    {{ ucfirst(@topping) }}
-                </input></label>
-            </repeat>
-
-        </div>
-
-        <h1>Stuffed Pretzel Field</h1>
-        <!--Stuffed Pretzel Fields-->
-        <div class="container" id="stuffedFields">
-
-            <h2>Stuffing **</h2>
-            <!--Stuffing-->
-            <select id="stuffing" class="form-control" name="stuffing">
-                <repeat group="{{ @stuffings }}" value="{{ @stuffing }}">
-                    <option value="{{ @stuffing }}"
-                    <check if="{{ $stuffing == @userStuffing }}">selected</check>>{{ ucfirst(@stuffing) }}</option>
+                <h2>Toppings</h2>
+                <!--Toppings-->
+                <repeat group="{{ @toppings }}" value="{{ @topping }}">
+                    <label><input type="checkbox" name="toppings[]"
+                    id="{{ @topping }}" value="{{ @topping }}"
+                    <check if="{{ in_array(@topping, @userToppings) }}"> checked="checked" </check>>
+                        {{ ucfirst(@topping) }}
+                    </input></label>
                 </repeat>
-                <!--<option value="cheese"> Cheese</option>
-                <option value="tuna"> Tuna</option>
-                <option value="bacon"> Bacon</option>-->
-            </select>
-            <check if="{{ isset(@errors['pretzStuffing']) }}">
-                <span class="err">{{ @errors['pretzStuffing'] }}</span>
-            </check>
 
+            </div>
         </div>
 
-        <h1>Pretzel Bites Field</h1>
-        <!--Pretzel Bites Fields-->
-        <div class="container" id="bitesFields">
+        <div>
+            <h1>Stuffed Pretzel Field</h1>
+            <!--Stuffed Pretzel Fields-->
+            <div class="container" id="stuffedFields">
 
-            <h2>Dipping Sauce</h2>
-            <!--Dipping Sauce-->
-            <select id="dipping" class="form-control" name="sauce">
-                <repeat group="{{ @sauces }}" value="{{ @sauce }}">
-                    <option value="{{ @sauce }}"
-                    <check if="{{ $sauce == @userSauce }}">selected</check>>{{ ucfirst(@sauce) }}</option>
-                </repeat>
-                <!--<option value="cheese"> Cheese</option>
-                <option value="ketchup"> Ketchup</option>
-                <option value="bbq"> Barbecue Sauce</option>-->
-            </select>
+                <h2>Stuffing **</h2>
+                <!--Stuffing-->
+                <select id="stuffing" class="form-control" name="stuffing">
+                    <repeat group="{{ @stuffings }}" value="{{ @stuffing }}">
+                        <option value="{{ @stuffing }}"
+                        <check if="{{ $stuffing == @userStuffing }}">selected</check>>{{ ucfirst(@stuffing) }}</option>
+                    </repeat>
+                    <!--<option value="cheese"> Cheese</option>
+                    <option value="tuna"> Tuna</option>
+                    <option value="bacon"> Bacon</option>-->
+                </select>
+                <check if="{{ isset(@errors['pretzStuffing']) }}">
+                    <span class="err">{{ @errors['pretzStuffing'] }}</span>
+                </check>
 
-            <label for="amount"><h2>Amount # **</h2></label>
-            <input type="number" class="form-control" name="amount" id="amount" value="{{ @userAmnt }}">
-            <check if="{{ isset(@errors['pretzAmnt']) }}">
-                <span class="err">{{ @errors['pretzAmnt'] }}</span>
-            </check>
+            </div>
         </div>
 
+        <div>
+            <h1>Pretzel Bites Field</h1>
+            <!--Pretzel Bites Fields-->
+            <div class="container" id="bitesFields">
+
+                <h2>Dipping Sauce</h2>
+                <!--Dipping Sauce-->
+                <select id="dipping" class="form-control" name="sauce">
+                    <repeat group="{{ @sauces }}" value="{{ @sauce }}">
+                        <option value="{{ @sauce }}"
+                        <check if="{{ $sauce == @userSauce }}">selected</check>>{{ ucfirst(@sauce) }}</option>
+                    </repeat>
+                    <!--<option value="cheese"> Cheese</option>
+                    <option value="ketchup"> Ketchup</option>
+                    <option value="bbq"> Barbecue Sauce</option>-->
+                </select>
+
+                <label for="amount"><h2>Amount # **</h2></label>
+                <input type="number" class="form-control" name="amount" id="amount" value="{{ @userAmnt }}">
+                <check if="{{ isset(@errors['pretzAmnt']) }}">
+                    <span class="err">{{ @errors['pretzAmnt'] }}</span>
+                </check>
+            </div>
+        </div>
         <div class="btn btn-primary">
             <input class="form-control btn btn-default"
                    type="submit" value="Next">
