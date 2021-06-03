@@ -21,8 +21,6 @@ class Controller
         //Reinitialize session array
         $_SESSION = array();
 
-        $_SESSION['pretzel'] = new Pretzel();
-
         $userType = "";
         $userWheat = "";
         $userToppings = array("Nothing");
@@ -40,8 +38,7 @@ class Controller
 
             // Validate Pretzel Type
             if (Validation::validateType($userType)) {
-                $_SESSION['pretzel']->setType($userType);
-                //$_SESSION['pretzType'] = $userType;
+                //$_SESSION['pretzType'] = $userType; - Nothing else is here
             }
             else {
                 $this->_f3->set('errors["pretzType"]', 'Please select a valid Type');
@@ -50,19 +47,20 @@ class Controller
             // Checks to see if toppings were chosen
             if (!empty($_POST['toppings'])) {
                 $userToppings = $_POST['toppings'];
-                $_SESSION['pretzel']->setToppings(implode(", ", $userToppings));
+                //$_SESSION['pretzel']->setToppings(implode(", ", $userToppings));
                 //$_SESSION['toppings'] = implode(", ", $userToppings);
             }
             else {
                 $userToppings = array("Nothing");
-                $_SESSION['pretzel']->setToppings(implode(", ", $userToppings));
+                //$_SESSION['pretzel']->setToppings(implode(", ", $userToppings));
                 //$_SESSION['toppings'] = "Nothing";
             }
 
             // Validate Stuffing, if user chose Stuffed
             if ($userType == "Stuffed") {
                 if (Validation::validateStuffing($userStuffing)) {
-                    $_SESSION['pretzel']->setStuffing($userStuffing);
+                    $userStuffing = $_POST['stuffing'];
+                    //$_SESSION['pretzel']->setStuffing($userStuffing);
                     //$_SESSION['stuffing'] = $userStuffing;
                 }
                 else {
@@ -73,7 +71,8 @@ class Controller
             // Validate Amount, if user chose Bitesize
             if ($userType == "Bitesize") {
                 if (Validation::validateAmount($userAmnt)) {
-                    $_SESSION['pretzel']->setAmount($userAmnt);
+                    $userAmnt = $_POST['amount'];
+                    //$_SESSION['pretzel']->setAmount($userAmnt);
                     //$_SESSION['amount'] = $userAmnt;
                 }
                 else {
@@ -88,13 +87,27 @@ class Controller
                 $userWheat = "No";
             }
 
-            $_SESSION['pretzel']->setWholeWheat($userWheat);
-            $_SESSION['pretzel']->setSauce($userSauce);
+            //$_SESSION['pretzel']->setWholeWheat($userWheat);
+            //$_SESSION['pretzel']->setSauce($userSauce);
             //$_SESSION['isWholeWheat'] = $userWheat;
             //$_SESSION['sauce'] = $userSauce;
 
             // Continue if there are no errors
             if (empty($this->_f3->get('errors'))) {
+
+                if ($userType == "Stuffed")
+                {
+                    $_SESSION['pretzel'] = new StuffedPretzel($userWheat, $userToppings, $userStuffing);
+                }
+                else if ($userType == "Bitesize")
+                {
+                    $_SESSION['pretzel'] = new PretzelBites($userWheat, $userToppings, $userSauce, $userAmnt);
+                }
+                else
+                {
+                    $_SESSION['pretzel'] = new Pretzel($userWheat, $userToppings);
+                }
+
                 header('location: summary');
             }
         }

@@ -2,37 +2,14 @@
 
 class Pretzel
 {
-    private $_type;         //String
+    //private $_type;         //String
     private $_wholeWheat;   //Boolean
     private $_toppings;     //String Array
-    private $_stuffing;     //String
-    private $_sauce;        //String
-    private $_amount;       //Integer
 
-    public function __construct()
+    public function __construct($wholeWheat = "", $toppings = array())
     {
-        $this->_type = "";
-        $this->_wholeWheat = false;
-        $this->_toppings = array();
-        $this->_stuffing = "";
-        $this->_sauce = "";
-        $this->_amount = 0;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getType()
-    {
-        return $this->_type;
-    }
-
-    /**
-     * @param mixed $type
-     */
-    public function setType($type)
-    {
-        $this->_type = $type;
+        $this->_wholeWheat = $wholeWheat;
+        $this->_toppings = $toppings;
     }
 
     /**
@@ -66,54 +43,4 @@ class Pretzel
     {
         $this->_toppings = $toppings;
     }
-
-    /**
-     * @return string
-     */
-    public function getStuffing()
-    {
-        return $this->_stuffing;
-    }
-
-    /**
-     * @param string $stuffing
-     */
-    public function setStuffing($stuffing)
-    {
-        $this->_stuffing = $stuffing;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSauce()
-    {
-        return $this->_sauce;
-    }
-
-    /**
-     * @param mixed $sauce
-     */
-    public function setSauce($sauce)
-    {
-        $this->_sauce = $sauce;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAmount()
-    {
-        return $this->_amount;
-    }
-
-    /**
-     * @param mixed $amount
-     */
-    public function setAmount($amount)
-    {
-        $this->_amount = $amount;
-    }
-
-
 }

@@ -17,16 +17,26 @@
             Stuffing
             Pretzel Bites
         -->
-        <h3 id="summPretzType">Pretzel Type: {{ @SESSION.pretzel->getType() }}</h3>
+        <h3 id="summPretzType">Pretzel Type:
+            <check if="{{ @SESSION.pretzel instanceof Pretzel }}">
+                Pretzel
+            </check>
+            <check if="{{ @SESSION.pretzel instanceof StuffedPretzel }}">
+                Stuffed Pretzel
+            </check>
+            <check if="{{ @SESSION.pretzel instanceof PretzelBites }}">
+                Pretzel Bites
+            </check>
+        </h3>
         <h3 id="summWholWheat">Whole Wheat: {{ @SESSION.pretzel->getWholeWheat() }}</h3>
-        <h3>Toppings: {{ @SESSION.pretzel->getToppings() }}</h3>
+        <h3>Toppings: {{ implode(", ", @SESSION.pretzel->getToppings()) }}</h3>
         <p id="summToppings"></p>
 
-        <check if="{{ @SESSION.pretzel->getType() == 'Stuffed' }}">
+        <check if="{{ @SESSION.pretzel instanceof StuffedPretzel }}">
             <h3 id="summStuffing">Stuffing: {{ @SESSION.pretzel->getStuffing() }}</h3>
         </check>
 
-        <check if="{{ @SESSION.pretzel->getType() == 'Bitesize' }}">
+        <check if="{{ @SESSION.pretzel instanceof PretzelBites }}">
             <h3 id="summSauce">Dipping Sauce: {{ @SESSION.pretzel->getSauce() }}</h3>
             <h3 id="summBitesAmnt">Amount of Bites: {{ @SESSION.pretzel->getAmount() }}</h3>
         </check>
