@@ -1,27 +1,31 @@
 <?php
 
-function validateType($type)
+class Validation
 {
-    $validTypes = getTypes();
+    static function validateType($type)
+    {
+        $validTypes = $GLOBALS['dataLayer']->getTypes();
 
-    if (!in_array($type, $validTypes)) {
-        return false;
+        if (!in_array($type, $validTypes)) {
+            return false;
+        }
+        return true;
     }
-    return true;
-}
 
-function validateStuffing($stuffing)
-{
-    $validStuffings = getStuffings();
+    static function validateStuffing($stuffing)
+    {
+        $validStuffings = $GLOBALS['dataLayer']->getStuffings();
 
-    if (!in_array($stuffing, $validStuffings)) {
-        return false;
+        if (!in_array($stuffing, $validStuffings)) {
+            return false;
+        }
+        return true;
     }
-    return true;
+
+    static function validateAmount($amount)
+    {
+        $amount = (int)$amount;
+        return (is_int($amount) && $amount >= 1);
+    }
 }
 
-function validateAmount($amount)
-{
-    $amount = (int)$amount;
-    return (is_int($amount) && $amount >= 1);
-}
