@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <include href="views/includes/head_links.html" />
+
+    <title>Order Now!</title>
+</head>
+<body>
+    <include href="views/includes/mainNavBar.html"/>
+
+    <form action="#" method="post" class="form-horizontal">
+        <div class="row h-100">
+            <div class="col-10">
+                <h1>Who is ordering this pretzel?</h1>
+
+                <!--First Name-->
+                <label>First Name</label>
+                <div class="col">
+                    <input class="form-control" type="text" name="firstName" id="firstName" value="">
+                </div>
+
+                <!--Last Name-->
+                <label>Last Name</label>
+                <div class="col">
+                    <input class="form-control" type="text" name="lastName" id="lastName" value="">
+                </div>
+
+                <!--Phone #-->
+                <label>Phone #</label>
+                <div class="col">
+                    <input class="form-control" type="number" name="phone" id="phone" value="">
+                </div>
+
+                <!--Address #-->
+                <label>Address #</label>
+                <div class="col">
+                    <input class="form-control" type="number" name="address" id="address" value="">
+                </div>
+
+                <!--Street-->
+                <label>Street</label>
+                <div class="col">
+                    <input class="form-control" type="text" name="street" id="street" value="">
+                </div>
+
+                <!--City/County-->
+                <label>City / County</label>
+                <div class="col">
+                    <input class="form-control" type="text" name="cityCounty" id="cityCounty" value="">
+                </div>
+
+                <!--State-->
+                <label>State</label>
+                <div class="col">
+                    <select id="state" class="form-control" name="state">
+                        <repeat group="{{ @states }}" value="{{ @state }}">
+                            <option>
+                                    {{ ucfirst(@state) }}
+                            </option>
+                        </repeat>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="btn btn-primary">
+            <input class="form-control btn btn-default"
+                   type="submit" value="Next">
+        </div>
+    </form>
+
+    <include href="views/includes/footer.html"/>
+</body>
+</html>

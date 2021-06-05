@@ -28,7 +28,6 @@ class Controller
         $userSauce = "";
         $userAmnt = "";
 
-        // display the home page
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $userType = $_POST['pretzType'];
@@ -108,7 +107,7 @@ class Controller
                     $_SESSION['pretzel'] = new Pretzel($userWheat, $userToppings);
                 }
 
-                header('location: summary');
+                header('location: custInfo');
             }
         }
 
@@ -127,16 +126,28 @@ class Controller
         echo $view->render('views/orderPage.html');
     }
 
+    function custInfo()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            header('location: summary');
+        }
+
+        $this->_f3->set('states', $GLOBALS['dataLayer']->getStateShorts());
+
+        $view = new Template();
+        echo $view->render('views/customerInfo.html');
+    }
+
     function summary()
     {
-        // display the home page
+        // display the Summary page
         $view = new Template();
         echo $view->render('views/orderSummary.html');
     }
 
     function user()
     {
-        // display the home page
+        // display the Profile page
         $view = new Template();
         echo $view->render('views/userProfile.html');
     }
