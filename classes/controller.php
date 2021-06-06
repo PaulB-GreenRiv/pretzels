@@ -128,11 +128,54 @@ class Controller
 
     function custInfo()
     {
+        $userFName = "";
+        $userLName = "";
+        $userPhone = 0;
+        $userAddress = 0;
+        $userStreet = "";
+        $userCityCounty = "";
+        $userState = "";
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            header('location: summary');
+
+            $userFName = $_POST["firstName"];
+            $userLName = $_POST["lastName"];
+            $userPhone = $_POST["phone"];
+            $userAddress = $_POST["address"];
+            $userStreet = $_POST["street"];
+            $userCityCounty = $_POST["cityCounty"];
+            $userState = $_POST["state"];
+
+            if (!Validation::validName($userFName))
+            {
+                $this->_f3->set('errors["firstName"]', 'Please use a valid name (non-numeric, 2+ letters)');
+            }
+
+            if (!Validation::validName($userLName))
+            {
+                $this->_f3->set('errors["lastName"]', 'Please use a valid name (non-numeric, 2+ letters)');
+            }
+
+            if (!Validation::validPhone($userPhone))
+            {
+                $this->_f3->set('errors["phone"]', 'Please enter a valid phone number (style: ##########)');
+            }
+
+            // Continue if there are no errors
+            if (empty($this->_f3->get('errors'))) {
+                $_SESSION['customer'] = new Customer($userFName, $userLName, $userPhone, $userAddress, $userStreet, $userCityCounty, $userState);
+                header('location: summary');
+            }
         }
 
         $this->_f3->set('states', $GLOBALS['dataLayer']->getStateShorts());
+        $this->_f3->set('userFName', $userFName);
+        $this->_f3->set('userLName', $userLName);
+        $this->_f3->set('userPhone', $userPhone);
+        $this->_f3->set('userAddress', $userAddress);
+        $this->_f3->set('userStreet', $userStreet);
+        $this->_f3->set('userCityCounty', $userCityCounty);
+        $this->_f3->set('userState', $userState);
 
         $view = new Template();
         echo $view->render('views/customerInfo.html');
@@ -140,6 +183,7 @@ class Controller
 
     function summary()
     {
+        var_dump($_SESSION);
         // display the Summary page
         $view = new Template();
         echo $view->render('views/orderSummary.html');

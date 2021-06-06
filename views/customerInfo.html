@@ -14,39 +14,49 @@
                 <h1>Who is ordering this pretzel?</h1>
 
                 <!--First Name-->
-                <label>First Name</label>
+                <label>First Name *</label>
                 <div class="col">
-                    <input class="form-control" type="text" name="firstName" id="firstName" value="">
+                    <input class="form-control" type="text" name="firstName" id="firstName" value="{{ @userFName }}">
                 </div>
+                <check if="{{ isset(@errors['userFName']) }}">
+                    <span>Invalid First Name, must be 2 or more letters</span>
+                </check>
 
                 <!--Last Name-->
-                <label>Last Name</label>
+                <label>Last Name *</label>
                 <div class="col">
-                    <input class="form-control" type="text" name="lastName" id="lastName" value="">
+                    <input class="form-control" type="text" name="lastName" id="lastName" value="{{ @userLName }}">
                 </div>
+                <check if="{{ isset(@errors['userLName']) }}">
+                    <span>Invalid Last Name, must be 2 or more letters</span>
+                </check>
 
                 <!--Phone #-->
-                <label>Phone #</label>
+                <label>Phone # *</label>
                 <div class="col">
-                    <input class="form-control" type="number" name="phone" id="phone" value="">
+                    <input class="form-control" type="number" name="phone" id="phone" value="{{ @userPhone }}">
                 </div>
+                <check if="{{ isset(@errors['userPhone']) }}">
+                    <span>Invalid Phone Number, must be 10 numbers in the manner "**********" (sorry other phone numbers)</span>
+                </check>
 
                 <!--Address #-->
                 <label>Address #</label>
                 <div class="col">
-                    <input class="form-control" type="number" name="address" id="address" value="">
+                    <input class="form-control" type="number" name="address" id="address" value="{{ @userAddress }}">
                 </div>
+                <label for="address">Just the ##### part</label>
 
                 <!--Street-->
                 <label>Street</label>
                 <div class="col">
-                    <input class="form-control" type="text" name="street" id="street" value="">
+                    <input class="form-control" type="text" name="street" id="street" value="{{ @userStreet }}">
                 </div>
 
                 <!--City/County-->
                 <label>City / County</label>
                 <div class="col">
-                    <input class="form-control" type="text" name="cityCounty" id="cityCounty" value="">
+                    <input class="form-control" type="text" name="cityCounty" id="cityCounty" value="{{ @userCityCounty }}">
                 </div>
 
                 <!--State-->
@@ -54,7 +64,8 @@
                 <div class="col">
                     <select id="state" class="form-control" name="state">
                         <repeat group="{{ @states }}" value="{{ @state }}">
-                            <option>
+                            <option value="{{ @state }}"
+                            <check if="{{ $state == @userState }}">selected</check>>
                                     {{ ucfirst(@state) }}
                             </option>
                         </repeat>
