@@ -18,8 +18,8 @@
                 <div class="col">
                     <input class="form-control" type="text" name="firstName" id="firstName" value="{{ @userFName }}">
                 </div>
-                <check if="{{ isset(@errors['userFName']) }}">
-                    <span>Invalid First Name, must be 2 or more letters</span>
+                <check if="{{ isset(@errors['firstName']) }}">
+                    <span class="err">{{ @errors['firstName'] }}</span>
                 </check>
 
                 <!--Last Name-->
@@ -27,8 +27,8 @@
                 <div class="col">
                     <input class="form-control" type="text" name="lastName" id="lastName" value="{{ @userLName }}">
                 </div>
-                <check if="{{ isset(@errors['userLName']) }}">
-                    <span>Invalid Last Name, must be 2 or more letters</span>
+                <check if="{{ isset(@errors['lastName']) }}">
+                    <span class="err">{{ @errors['lastName'] }}</span>
                 </check>
 
                 <!--Phone #-->
@@ -36,8 +36,8 @@
                 <div class="col">
                     <input class="form-control" type="number" name="phone" id="phone" value="{{ @userPhone }}">
                 </div>
-                <check if="{{ isset(@errors['userPhone']) }}">
-                    <span>Invalid Phone Number, must be 10 numbers in the manner "**********" (sorry other phone numbers)</span>
+                <check if="{{ isset(@errors['phone']) }}">
+                    <span class="err">{{ @errors['phone'] }}</span>
                 </check>
 
                 <!--Address #-->

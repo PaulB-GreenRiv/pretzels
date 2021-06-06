@@ -41,7 +41,7 @@ class Validation
 
     static function validatePhone($phone)
     {
-        return (is_int($phone) and ($phone > 1000000000 and $phone < 9999999999));
+        return (is_int($phone) && (($phone >= 1000000000) && ($phone <= 9999999999)));
     }
 }
 

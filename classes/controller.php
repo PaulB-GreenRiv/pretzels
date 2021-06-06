@@ -146,18 +146,21 @@ class Controller
             $userCityCounty = $_POST["cityCounty"];
             $userState = $_POST["state"];
 
-            if (!Validation::validName($userFName))
-            {
+            if (Validation::validateName($userFName)) {
+                $userFName = $_POST["firstName"];
+            } else {
                 $this->_f3->set('errors["firstName"]', 'Please use a valid name (non-numeric, 2+ letters)');
             }
 
-            if (!Validation::validName($userLName))
-            {
+            if (Validation::validateName($userLName)) {
+                $userLName = $_POST["lastName"];
+            } else {
                 $this->_f3->set('errors["lastName"]', 'Please use a valid name (non-numeric, 2+ letters)');
             }
 
-            if (!Validation::validPhone($userPhone))
-            {
+            if (!(Validation::validatePhone($userPhone))) {
+                $userPhone = $_POST["phone"];
+            } else {
                 $this->_f3->set('errors["phone"]', 'Please enter a valid phone number (style: ##########)');
             }
 
