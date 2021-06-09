@@ -36,12 +36,11 @@ class Validation
 
     static function validateName($name)
     {
-        return ctype_alpha($name);
+        return ctype_alpha($name) && (strlen($name) >= 2);
     }
 
     static function validatePhone($phone)
     {
-        return (is_int($phone) && (($phone >= 1000000000) && ($phone <= 9999999999)));
+        return strlen($phone) == 10;
     }
 }
-

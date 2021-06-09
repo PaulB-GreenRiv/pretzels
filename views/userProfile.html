@@ -37,7 +37,28 @@
 
                     <p>
                         <span>Current Order:</span><br>
-                        <span>You do not have any orders yet.</span>
+                        <span>
+                            <table id="tblOrders">
+                                <thead>
+                                <tr>
+                                    <td>Order ID</td><td>Whole Wheat</td><td>Type</td><td>Toppings</td><td>Stuffing</td><td>Sauce</td><td>Amount</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <repeat group="{{ @result }}" value="{{ @order }}">
+                                    <tr>
+                                        <td>{{ @order['order_id']}}</td>
+                                        <td>{{ @order['is_whole_wheat']}}</td>
+                                        <td>{{ @order['pretzel_type']}}</td>
+                                        <td>{{ @order['toppings']}}</td>
+                                        <td>{{ @order['stuffing']}}</td>
+                                        <td>{{ @order['sauce']}}</td>
+                                        <td>{{ @order['amount']}}</td>
+                                    </tr>
+                                </repeat>
+                                </tbody>
+                            </table>
+                        </span>
                     </p>
                 </div>
             </div>

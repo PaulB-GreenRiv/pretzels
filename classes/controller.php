@@ -158,10 +158,10 @@ class Controller
                 $this->_f3->set('errors["lastName"]', 'Please use a valid name (non-numeric, 2+ letters)');
             }
 
-            if (!(Validation::validatePhone($userPhone))) {
+            if (Validation::validatePhone($userPhone)) {
                 $userPhone = $_POST["phone"];
             } else {
-                $this->_f3->set('errors["phone"]', 'Please enter a valid phone number (style: ##########)');
+                $this->_f3->set('errors["phone"]', 'Please enter a valid phone number (10 digits, style: ##########)');
             }
 
             // Continue if there are no errors
@@ -186,7 +186,18 @@ class Controller
 
     function summary()
     {
-        var_dump($_SESSION);
+        //var_dump($_SESSION);
+
+        //Save User data to database
+        $custID = $GLOBALS['dataLayer']->saveCustomer($_SESSION['customer']);
+
+        //Save order data to database
+        $ordID = $GLOBALS['dataLayer']->saveOrder($custID);
+
+        //Save pretzel data to database
+        $pretzID = $GLOBALS['dataLayer']->savePretzel($_SESSION['pretzel'], $ordID);
+        $this->_f3->set('pretzID', $pretzID);
+
         // display the Summary page
         $view = new Template();
         echo $view->render('views/orderSummary.html');
@@ -194,6 +205,12 @@ class Controller
 
     function user()
     {
+        // grab order data from database
+        $result = $GLOBALS['dataLayer']->getOrders(1);
+
+        // Put result in hive
+        $this->_f3->set('result', $result);
+
         // display the Profile page
         $view = new Template();
         echo $view->render('views/userProfile.html');
