@@ -6,33 +6,31 @@ Page key:
 
 -Work that needs to be done-
 
-Catching up with the dating assignment:
-- Form validation
--- Pretzel Type - manditory
--- Whole wheat -
--- Toppings -
--- Stuffing - manditory*
--- Dipping Sauce -
--- Amount - manditory*
-* - only if stuffed/bitesized
-- Reduce redundant code / Templating
-- Sticky form
+User Page:
+- Search forms
+-- Get orders from customer based on first name
+-- Get orders based on order ID
+- Stylize
+
+Form:
+- stylize everything
+-- have side area adapt with selections, price adjusts
+-- Customer info needs better styling
+
+Summary:
+- Display customer info
+- Stylize summary page
+-- Center text
+- Summary page alerts if database wasn't accessed
+
 
 Other changes:
-- Ability to order multiple pretzels
-- Form stylization
-- Calculate price of pretzels (displays in form)
-- Add a pretzel class
+- Better centering on header
+- Better color pallet for home page
+
 
 Who is doing what (Put a ! before any finished sections)
 
 Paul:
-- Add Pretzel class
-- !Form Validation
-- Sticky form
 
 Yurii:
-- Reduce redundant code / Templating
-- Form Stylization
-- Ability to order multiple pretzels
-- Calculate price of pretzels (displays in form)
