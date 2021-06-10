@@ -9,7 +9,7 @@
     <include href="views/includes/mainNavBar.html"/>
 
     <h1>Order Summary</h1>
-    <div class="container" id="orderSumm">
+    <div class="container vh-83" id="orderSumm">
         <!--
             Pretzel Type
             is it Whole Wheat?
@@ -42,9 +42,9 @@
         </check>
 
         <h1>Your order number is: {{ @pretzID }}</h1>
-
+        <h2 id="TotalPrice">Price: $1000</h2>
     </div>
-    <h2 id="TotalPrice">Price: $1000</h2>
+
 
     <include href="views/includes/footer.html"/>
 </body>
