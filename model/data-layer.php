@@ -139,14 +139,15 @@ class DataLayer
         return $result;
     }
 
-    // Grab orders based on customer ID
-    /*function getOrdersCust($customerID)
+    // Grab orders based on first and name
+    function getOrdersName($fName, $lName)
     {
         //1. Define the query
-        $sql = "SELECT * 
-                FROM customertest 
-                INNER JOIN ordertest ON customertest.order_id=ordertest.order_id
-                WHERE (customer_id = $custID)";
+        $sql = "SELECT order_id, pretzel_id, is_whole_wheat, pretzel_type, toppings, stuffing, dipping_sauce, bites_amount
+                FROM ordertest 
+                INNER JOIN customertest ON ordertest.customer_id = customertest.customer_id
+                INNER JOIN pretzeltest ON pretzeltest.order_id = ordertest.order_id
+                WHERE (customertest.first_name = $fName && customertest.last_name = $lName)";
 
         //2. Prepare the statement
         $statement = $this->_dbh->prepare($sql);
@@ -157,7 +158,7 @@ class DataLayer
         //4. Return the result
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $result;
-    }*/
+    }
 
     function getTypes()
     {

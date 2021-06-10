@@ -203,10 +203,43 @@ class Controller
         echo $view->render('views/orderSummary.html');
     }
 
+    function searchBy()
+    {
+        //Reinitialize session array
+        $_SESSION = array();
+
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if (sizeof($_POST) > 1) {
+                $_SESSION['fName'] = $_POST['getDBFName'];
+                $_SESSION['lName'] = $_POST['getDBLName'];
+            }
+            else {
+                $_SESSION['orderNum'] = $_POST['getDBOrder'];
+            }
+            header('location: user');
+        }
+
+        // display the Summary page
+        $view = new Template();
+        echo $view->render('views/searchBy.html');
+    }
+
     function user()
     {
-        // grab order data from database
-        $result = $GLOBALS['dataLayer']->getOrders(1);
+        $userFName = "";
+        $userLName = "";
+        $ordNum = 0;
+        $result = array();
+
+        if ($_SESSION['orderNum'] != null) {
+            $ordNum = $_SESSION['orderNum'];
+            $result = $GLOBALS['dataLayer']->getOrders($ordNum);
+        } else {
+            $userFName = $_SESSION['fName'];
+            $userLName = $_SESSION['lName'];
+            $result = $GLOBALS['dataLayer']->getOrdersName($userFName, $userLName);
+        }
 
         // Put result in hive
         $this->_f3->set('result', $result);

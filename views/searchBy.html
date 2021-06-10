@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <include href="views/includes/head_links.html"/>
+
+    <title>Search Orders By</title>
+</head>
+<body>
+    <include href="views/includes/mainNavBar.html"/>
+
+    <h2>Search By First and Last Name</h2>
+    <form action="#" method="post" class="form-horizontal">
+        <div class="form-group">
+            <label for="getDBFName">Search By First & Last Name: </label>
+            <input type="text" class="form-control" id="getDBFName" name="getDBFName">
+            <input type="text" class="form-control" id="getDBLName" name="getDBLName">
+            <input class="form-control btn btn-info" type="submit">
+        </div>
+    </form>
+    <br>
+    <h1>Search By Order #</h1>
+    <form action="#" method="post" class="form-horizontal">
+        <div class="form-group">
+            <label for="getDBOrder">Search Orders by Order number: </label>
+            <input type="number" class="form-control" id="getDBOrder" name="getDBOrder">
+            <br>
+            <input class="form-control btn btn-info" type="submit">
+        </div>
+    </form>
+    <br>
+
+    <include href="views/includes/footer.html"/>
+</body>
+</html>

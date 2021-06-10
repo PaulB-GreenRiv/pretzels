@@ -43,6 +43,10 @@ $f3->route('GET|POST /custInfo', function (){
     $GLOBALS['con']->custInfo();
 });
 
+$f3->route('GET|POST /searchBy', function (){
+    $GLOBALS['con']->searchBy();
+});
+
 $f3->route('GET|POST /user', function (){
     $GLOBALS['con']->user();
 });
