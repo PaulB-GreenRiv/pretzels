@@ -10,9 +10,9 @@
 
     <form action="#" method="post" class="form-horizontal">
         <!-- This div contains entire form information and is a row for the order div (left) and summary div (right) -->
-        <div class="row h-100">
+        <div class="row no-pad vh-88">
             <!-- This is order div (left) -->
-            <div class="col-10">
+            <div class="col-12 col-md-8 col-lg-10">
                 <h1>Construct Your Pretzel</h1>
                 <!--Type of Pretzel-->
                 <div class="container row form-group" id="pretzelType">
@@ -105,18 +105,18 @@
             </div>
 
             <!-- This is summary div (right) -->
-            <div id="orderSummary_div" class="col-2 bg-warning p-0">
+            <div id="orderSummary_div" class="col-12 col-md-4 col-lg-2 bg-warning p-0">
                 <div id="orderSummary" class="h-75">
 
                 </div>
 
                 <!-- Submit order and price here -->
-                <div class="h-25 border border-dark">
+                <div class="h-25 border border-dark text-center">
                     <div class="">
                         <h3>$13.25</h3>
                     </div>
 
-                    <div class="btn btn-primary">
+                    <div class="btn btn-primary mt-2">
                         <input class="form-control btn btn-default"
                                type="submit" value="Next">
                     </div>
@@ -125,7 +125,6 @@
         </div>
     </form>
 
-    <br><br><br>
 
     <include href="views/includes/footer.html"/>
 </body>
