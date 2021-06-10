@@ -19,7 +19,7 @@
                     <h2>Pretzel Type *</h2>
                     <!--Select a Pretzel-->
                     <repeat group="{{ @types }}" value="{{ @type }}">
-                        <label class="col"><input onclick="showContent(this)" type="radio" name="pretzType"
+                        <label class="col"><input onclick="showContent(this), updateOrdSumm(this, 'type')" type="radio" name="pretzType"
                         id="{{ @type }} " value="{{ @type }}"
                             <check if="{{ $type == @userType }}">checked="checked"</check>>
                             {{ ucfirst(@type) }}
@@ -39,13 +39,13 @@
                     <div class="container row form-group" id="anyFields">
                         <h2>Whole Wheat</h2>
                         <!--Whole Wheat-->
-                        <label><input type="checkbox" name="isWholeWheat" value="yesWholeWheat"
+                        <label><input type="checkbox" id="isWholeWheat" name="isWholeWheat" value="yesWholeWheat" onclick="updateOrdSumm(this, 'wholeWheat')"
                             <check if="{{ @userWheat == 'Yes' }}">checked="checked"</check>> Whole Wheat</label>
 
                         <h2>Toppings</h2>
                         <!--Toppings-->
                         <repeat group="{{ @toppings }}" value="{{ @topping }}">
-                            <label><input type="checkbox" name="toppings[]"
+                            <label><input type="checkbox" name="toppings[]" onclick="updateOrdSumm(this, 'toppings')"
                             id="{{ @topping }}" value="{{ @topping }}"
                             <check if="{{ in_array(@topping, @userToppings) }}"> checked="checked" </check>>
                                 {{ ucfirst(@topping) }}
@@ -96,7 +96,8 @@
                         </select>
 
                         <label for="amount"><h2>Amount # **</h2></label>
-                        <input type="number" class="form-control" name="amount" id="amount" value="{{ @userAmnt }}">
+                        <input type="number" class="form-control" name="amount" id="amount"
+                               value="{{ @userAmnt }}" onchange="updateOrdSumm(this, 'amount')">
                         <check if="{{ isset(@errors['pretzAmnt']) }}">
                             <span class="err">{{ @errors['pretzAmnt'] }}</span>
                         </check>
@@ -107,13 +108,18 @@
             <!-- This is summary div (right) -->
             <div id="orderSummary_div" class="col-12 col-md-4 col-lg-2 bg-warning p-0">
                 <div id="orderSummary" class="h-75">
-
+                    <p id="getType">Pretzel Type: </p>
+                    <p id="getWheat">Whole Wheat: </p>
+                    <p id="getToppings">Toppings: </p>
+                    <p id="getStuffing">Stuffing: </p>
+                    <p id="getSauce">Sauce: </p>
+                    <p id="getAmount">Amount: </p>
                 </div>
 
                 <!-- Submit order and price here -->
                 <div class="h-25 border border-dark text-center">
                     <div class="">
-                        <h3>$13.25</h3>
+                        <h3 id="pretzelCost">$0.00</h3>
                     </div>
 
                     <div class="btn btn-primary mt-2">
