@@ -143,19 +143,23 @@ class DataLayer
     function getOrdersName($fName, $lName)
     {
         //1. Define the query
-        $sql = "SELECT order_id, pretzel_id, is_whole_wheat, pretzel_type, toppings, stuffing, dipping_sauce, bites_amount
+        $sql = "SELECT *
                 FROM ordertest 
                 INNER JOIN customertest ON ordertest.customer_id = customertest.customer_id
                 INNER JOIN pretzeltest ON pretzeltest.order_id = ordertest.order_id
-                WHERE (customertest.first_name = $fName && customertest.last_name = $lName)";
+                WHERE (customertest.first_name = :fName && customertest.last_name = :lName)";
 
         //2. Prepare the statement
         $statement = $this->_dbh->prepare($sql);
 
-        //3. Execute the query
+        //3. Bind Parameters
+        $statement->bindParam(':fName', $fName, PDO::PARAM_STR);
+        $statement->bindParam(':lName', $lName, PDO::PARAM_STR);
+
+        //4. Execute the query
         $statement->execute();
 
-        //4. Return the result
+        //5. Return the result
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }

@@ -10,25 +10,33 @@
 
 <div class="container">
     <div>
-        <h1 class="text-center">Welcome back, John!</h1>
+        <check if="{{ $fullDetails == true }}">
+            <h1 class="text-center">Welcome back, {{ @getName }}!</h1>
+        </check>
+        <check if="{{ $fullDetails == false }}">
+            <h1 class="text-center">Here is your Order!</h1>
+        </check>
+
         <div id="userInfo_div">
-            <h2>User Information:</h2>
 
             <div class="row">
-                <div class="col">
-                    <p>
-                        <span>Customer ID:</span>
-                        <span>#000 000</span>
-                    </p>
-                    <p>
-                        <span>Name:</span>
-                        <span>John Doe</span>
-                    </p>
-                    <p>
-                        <span>Address:</span>
-                        <span></span>
-                    </p>
-                </div>
+                <check if="{{ $fullDetails == true }}">
+                    <h2>User Information:</h2>
+                    <div class="col">
+                        <p>
+                            <span>Customer ID:</span>
+                            <span>#{{ @getID }}</span>
+                        </p>
+                        <p>
+                            <span>Name:</span>
+                            <span>{{ @getName }}</span>
+                        </p>
+                        <p>
+                            <span>Address:</span>
+                            <span>{{ @getAddress }}</span>
+                        </p>
+                    </div>
+                </check>
 
                 <div class="col">
                     <p>

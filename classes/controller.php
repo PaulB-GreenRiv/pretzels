@@ -230,19 +230,33 @@ class Controller
         $userFName = "";
         $userLName = "";
         $ordNum = 0;
+        $fullDetails = false;
         $result = array();
 
-        if ($_SESSION['orderNum'] != null) {
+        if ($_SESSION['orderNum'] != NULL) {
             $ordNum = $_SESSION['orderNum'];
             $result = $GLOBALS['dataLayer']->getOrders($ordNum);
         } else {
             $userFName = $_SESSION['fName'];
             $userLName = $_SESSION['lName'];
             $result = $GLOBALS['dataLayer']->getOrdersName($userFName, $userLName);
+            $fullDetails = true;
         }
 
         // Put result in hive
         $this->_f3->set('result', $result);
+
+        if ($fullDetails) {
+            $getID = $result[0]['order_id'];
+            $getName = ($result[0]['first_name'] . " " . $result[0]['last_name']);
+            $getAddress = ($result[0]['address'] . " " . $result[0]['street'] . ", (" . $result[0]['city'] . ", " . $result[0]['state'] . ")");
+
+            // Set Hive attributes
+            $this->_f3->set('fullDetails', true);
+            $this->_f3->set('getID', $getID);
+            $this->_f3->set('getName', $getName);
+            $this->_f3->set('getAddress', $getAddress);
+        }
 
         // display the Profile page
         $view = new Template();
