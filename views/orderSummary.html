@@ -17,6 +17,12 @@
             Stuffing
             Pretzel Bites
         -->
+
+        <h2>Order To: {{ @SESSION.customer->getFName() }} {{ @SESSION.customer->getLName() }}</h2>
+        <p>( {{ @SESSION.customer->getAddressNum() }}, {{ @SESSION.customer->getStreet() }} )
+            {{ @SESSION.customer->getCityCounty() }} {{ @SESSION.customer->getState() }}
+            phone: {{ @SESSION.customer->getPhone() }}</p>
+
         <h3 id="summPretzType">Pretzel Type:
             <check if="{{ @SESSION.pretzel instanceof Pretzel }}">
                 Pretzel
