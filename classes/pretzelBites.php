@@ -1,10 +1,21 @@
 <?php
 
+/**
+ * Represents bite sized pretzels
+ * Class PretzelBites
+ */
 class PretzelBites extends Pretzel
 {
-    private $_sauce;        //String
-    private $_amount;       //Integer
+    private $_sauce;        //String, Dipping sauce
+    private $_amount;       //Integer, Amount of pretzels
 
+    /**
+     * PretzelBites constructor.
+     * @param string $wholeWheat Is it whole wheat?
+     * @param array $toppings What toppings are wanted
+     * @param string $sauce Dipping sauce wanted
+     * @param int $amount Amount of bites requested
+     */
     public function __construct($wholeWheat = "", $toppings = array(), $sauce = "", $amount = 0)
     {
         parent::__construct($wholeWheat, $toppings);
@@ -13,7 +24,8 @@ class PretzelBites extends Pretzel
     }
 
     /**
-     * @return mixed|string
+     * Gets dipping sauce
+     * @return mixed|string Returns dipping sauce
      */
     public function getSauce()
     {
@@ -21,7 +33,8 @@ class PretzelBites extends Pretzel
     }
 
     /**
-     * @param mixed|string $sauce
+     * Sets dipping sauce
+     * @param mixed|string $sauce Dipping sauce wanted
      */
     public function setSauce($sauce)
     {
@@ -29,7 +42,8 @@ class PretzelBites extends Pretzel
     }
 
     /**
-     * @return int|mixed
+     * Gets the amount of bites
+     * @return int|mixed Returns amount of bites
      */
     public function getAmount()
     {
@@ -37,7 +51,8 @@ class PretzelBites extends Pretzel
     }
 
     /**
-     * @param int|mixed $amount
+     * Sets the amount of bites
+     * @param int|mixed $amount How many bites are wanted
      */
     public function setAmount($amount)
     {
@@ -45,7 +60,8 @@ class PretzelBites extends Pretzel
     }
 
     /**
-     * @return float
+     * Determines pretzel cost
+     * @return float Calculates and returns pretzel cost
      */
     public function getCost()
     {

@@ -1,14 +1,24 @@
 <?php
 
+/**
+ * Class Controller
+ */
 class Controller
 {
     private $_f3; //router
 
+    /**
+     * Controller constructor.
+     * @param $f3
+     */
     function __construct($f3)
     {
         $this->_f3 = $f3;
     }
 
+    /**
+     * Home Page
+     */
     function home()
     {
         //Display the home page
@@ -16,11 +26,15 @@ class Controller
         echo $view->render('views/home.html');
     }
 
+    /**
+     * Order Page
+     */
     function order()
     {
         //Reinitialize session array
         $_SESSION = array();
 
+        // Default variables
         $userType = "";
         $userWheat = "";
         $userToppings = array("Nothing");
@@ -30,6 +44,7 @@ class Controller
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
+            // Gets fields from Post
             $userType = $_POST['pretzType'];
             $userStuffing = $_POST['stuffing'];
             $userSauce = $_POST['sauce'];
@@ -37,7 +52,6 @@ class Controller
 
             // Validate Pretzel Type
             if (Validation::validateType($userType)) {
-                //$_SESSION['pretzType'] = $userType; - Nothing else is here
             }
             else {
                 $this->_f3->set('errors["pretzType"]', 'Please select a valid Type');
@@ -46,21 +60,15 @@ class Controller
             // Checks to see if toppings were chosen
             if (!empty($_POST['toppings'])) {
                 $userToppings = $_POST['toppings'];
-                //$_SESSION['pretzel']->setToppings(implode(", ", $userToppings));
-                //$_SESSION['toppings'] = implode(", ", $userToppings);
             }
             else {
                 $userToppings = array("Nothing");
-                //$_SESSION['pretzel']->setToppings(implode(", ", $userToppings));
-                //$_SESSION['toppings'] = "Nothing";
             }
 
             // Validate Stuffing, if user chose Stuffed
             if ($userType == "Stuffed") {
                 if (Validation::validateStuffing($userStuffing)) {
                     $userStuffing = $_POST['stuffing'];
-                    //$_SESSION['pretzel']->setStuffing($userStuffing);
-                    //$_SESSION['stuffing'] = $userStuffing;
                 }
                 else {
                     $this->_f3->set('errors["pretzStuffing"]', 'Please select a valid Stuffing');
@@ -71,14 +79,13 @@ class Controller
             if ($userType == "Bitesize") {
                 if (Validation::validateAmount($userAmnt)) {
                     $userAmnt = $_POST['amount'];
-                    //$_SESSION['pretzel']->setAmount($userAmnt);
-                    //$_SESSION['amount'] = $userAmnt;
                 }
                 else {
                     $this->_f3->set('errors["pretzAmnt"]', 'Please select a valid amount (1 or more)');
                 }
             }
 
+            // Sets whole wheat field
             $isWW = $_POST['isWholeWheat'];
             if ($isWW == "yesWholeWheat") {
                 $userWheat = "Yes";
@@ -86,14 +93,10 @@ class Controller
                 $userWheat = "No";
             }
 
-            //$_SESSION['pretzel']->setWholeWheat($userWheat);
-            //$_SESSION['pretzel']->setSauce($userSauce);
-            //$_SESSION['isWholeWheat'] = $userWheat;
-            //$_SESSION['sauce'] = $userSauce;
-
             // Continue if there are no errors
             if (empty($this->_f3->get('errors'))) {
 
+                // Sets pretzel type
                 if ($userType == "Stuffed")
                 {
                     $_SESSION['pretzel'] = new StuffedPretzel($userWheat, $userToppings, $userStuffing);
@@ -111,6 +114,7 @@ class Controller
             }
         }
 
+        // Set fields to hive
         $this->_f3->set('userType', $userType);
         $this->_f3->set('types', $GLOBALS['dataLayer']->getTypes());
         $this->_f3->set('userWheat', $userWheat);
@@ -122,12 +126,17 @@ class Controller
         $this->_f3->set('sauces', $GLOBALS['dataLayer']->getSauces());
         $this->_f3->set('userAmnt', $userAmnt);
 
+        // Display Order Page
         $view = new Template();
         echo $view->render('views/orderPage.html');
     }
 
+    /**
+     * Customer Info
+     */
     function custInfo()
     {
+        // Default variables
         $userFName = "";
         $userLName = "";
         $userPhone = 0;
@@ -138,6 +147,7 @@ class Controller
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
+            // Set Post Variables
             $userFName = $_POST["firstName"];
             $userLName = $_POST["lastName"];
             $userPhone = $_POST["phone"];
@@ -146,18 +156,21 @@ class Controller
             $userCityCounty = $_POST["cityCounty"];
             $userState = $_POST["state"];
 
+            // Validate First Name
             if (Validation::validateName($userFName)) {
                 $userFName = $_POST["firstName"];
             } else {
                 $this->_f3->set('errors["firstName"]', 'Please use a valid name (non-numeric, 2+ letters)');
             }
 
+            // Validate Last Name
             if (Validation::validateName($userLName)) {
                 $userLName = $_POST["lastName"];
             } else {
                 $this->_f3->set('errors["lastName"]', 'Please use a valid name (non-numeric, 2+ letters)');
             }
 
+            // Validate Phone #
             if (Validation::validatePhone($userPhone)) {
                 $userPhone = $_POST["phone"];
             } else {
@@ -171,6 +184,7 @@ class Controller
             }
         }
 
+        // Set hive fields
         $this->_f3->set('states', $GLOBALS['dataLayer']->getStateShorts());
         $this->_f3->set('userFName', $userFName);
         $this->_f3->set('userLName', $userLName);
@@ -180,23 +194,26 @@ class Controller
         $this->_f3->set('userCityCounty', $userCityCounty);
         $this->_f3->set('userState', $userState);
 
+        // Display Customer Info Page
         $view = new Template();
         echo $view->render('views/customerInfo.html');
     }
 
+    /**
+     * Summary Page
+     */
     function summary()
     {
-        //var_dump($_SESSION);
-
-        //Save User data to database
+        // Save User data to database
         $custID = $GLOBALS['dataLayer']->saveCustomer($_SESSION['customer']);
 
-        //Save order data to database
+        // Save order data to database
         $ordID = $GLOBALS['dataLayer']->saveOrder($custID);
 
-        //Save pretzel data to database
+        // Save pretzel data to database
         $pretzID = $GLOBALS['dataLayer']->savePretzel($_SESSION['pretzel'], $ordID);
 
+        // Sets ID and cost fields in the hive
         $this->_f3->set('pretzID', $ordID);
         $this->_f3->set('pretzCost', $_SESSION['pretzel']->getCost());
 
@@ -205,13 +222,16 @@ class Controller
         echo $view->render('views/orderSummary.html');
     }
 
+    /**
+     * Searching Database
+     */
     function searchBy()
     {
         //Reinitialize session array
         $_SESSION = array();
 
-
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Sets variables to session depending on if the user searched by name or order
             if (sizeof($_POST) > 1) {
                 $_SESSION['fName'] = $_POST['getDBFName'];
                 $_SESSION['lName'] = $_POST['getDBLName'];
@@ -227,18 +247,22 @@ class Controller
         echo $view->render('views/searchBy.html');
     }
 
+    /**
+     * User Page
+     */
     function user()
     {
+        // Default variables
         $userFName = "";
         $userLName = "";
         $ordNum = 0;
         $fullDetails = false;
         $result = array();
 
-        if ($_SESSION['orderNum'] != NULL) {
+        if ($_SESSION['orderNum'] != NULL) {    // Search by Order Number
             $ordNum = $_SESSION['orderNum'];
             $result = $GLOBALS['dataLayer']->getOrders($ordNum);
-        } else {
+        } else {                                // Search by name
             $userFName = $_SESSION['fName'];
             $userLName = $_SESSION['lName'];
             $result = $GLOBALS['dataLayer']->getOrdersName($userFName, $userLName);
@@ -249,6 +273,7 @@ class Controller
         $this->_f3->set('result', $result);
 
         if ($fullDetails) {
+            // Sets User attributes if user searched by name
             $getID = $result[0]['order_id'];
             $getName = ($result[0]['first_name'] . " " . $result[0]['last_name']);
             $getAddress = ($result[0]['address'] . " " . $result[0]['street'] . ", (" . $result[0]['city'] . ", " . $result[0]['state'] . ")");

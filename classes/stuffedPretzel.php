@@ -1,9 +1,19 @@
 <?php
 
+/**
+ * Represents a stuffed pretzel
+ * Class StuffedPretzel
+ */
 class StuffedPretzel extends Pretzel
 {
-    private $_stuffing;     //String
+    private $_stuffing;     //String, Pretzel stuffing
 
+    /**
+     * StuffedPretzel constructor.
+     * @param string $wholeWheat Is the pretzel whole wheat?
+     * @param array $toppings Toppings on the pretzel
+     * @param string $stuffing What stuffing is wanted
+     */
     public function __construct($wholeWheat = "", $toppings = array(), $stuffing = "")
     {
         parent::__construct($wholeWheat, $toppings);
@@ -11,7 +21,8 @@ class StuffedPretzel extends Pretzel
     }
 
     /**
-     * @return mixed|string
+     * Gets stuffing
+     * @return mixed|string Returns stuffing
      */
     public function getStuffing()
     {
@@ -19,7 +30,8 @@ class StuffedPretzel extends Pretzel
     }
 
     /**
-     * @param mixed|string $stuffing
+     * Sets stuffing
+     * @param mixed|string $stuffing what stuffing do you want?
      */
     public function setStuffing($stuffing)
     {
@@ -27,7 +39,8 @@ class StuffedPretzel extends Pretzel
     }
 
     /**
-     * @return float
+     * Determines pretzel cost
+     * @return float Calculates and returns pretzel cost
      */
     public function getCost()
     {
