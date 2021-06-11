@@ -196,7 +196,9 @@ class Controller
 
         //Save pretzel data to database
         $pretzID = $GLOBALS['dataLayer']->savePretzel($_SESSION['pretzel'], $ordID);
-        $this->_f3->set('pretzID', $pretzID);
+
+        $this->_f3->set('pretzID', $ordID);
+        $this->_f3->set('pretzCost', $_SESSION['pretzel']->getCost());
 
         // display the Summary page
         $view = new Template();

@@ -43,4 +43,22 @@ class Pretzel
     {
         $this->_toppings = $toppings;
     }
+
+    /**
+     * @return float
+     */
+    public function getCost()
+    {
+        $baseCost = 1.00;
+        if ($this->_wholeWheat == "Yes")
+        {
+            $baseCost = 2.00;
+        }
+        foreach ($this->_toppings as $top)
+        {
+            $baseCost += 0.25;
+        }
+
+        return $baseCost;
+    }
 }

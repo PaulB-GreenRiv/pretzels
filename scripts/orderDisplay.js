@@ -18,7 +18,7 @@ function updateOrdSumm(fieldData, field)
     // Type costs
     if (field === 'type') {
         if ((fieldData.value).trim() === "Regular") {cost = 1.00}       // Regular
-        else if ((fieldData.value).trim() === "Stuffed") {cost = 1.50}  // Stuffed
+        else if ((fieldData.value).trim() === "Stuffed") {cost = 2.00}  // Stuffed
         else {cost = 1.00}                                              // Bitesize
 
         //Display progress

@@ -25,4 +25,22 @@ class StuffedPretzel extends Pretzel
     {
         $this->_stuffing = $stuffing;
     }
+
+    /**
+     * @return float
+     */
+    public function getCost()
+    {
+        $baseCost = 2.00;
+        if (parent::getWholeWheat() == "Yes")
+        {
+            $baseCost = 3.00;
+        }
+        foreach (parent::getToppings() as $top)
+        {
+            $baseCost += 0.25;
+        }
+
+        return $baseCost;
+    }
 }

@@ -43,4 +43,27 @@ class PretzelBites extends Pretzel
     {
         $this->_amount = $amount;
     }
+
+    /**
+     * @return float
+     */
+    public function getCost()
+    {
+        $baseCost = 1.00;
+        if (parent::getWholeWheat() == "Yes")
+        {
+            $baseCost += (0.25 * $this->_amount);
+        }
+        else
+        {
+            $baseCost += (0.25 * $this->_amount);
+        }
+
+        foreach (parent::getToppings() as $top)
+        {
+            $baseCost += 0.25;
+        }
+
+        return $baseCost;
+    }
 }
