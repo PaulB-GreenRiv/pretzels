@@ -1,15 +1,29 @@
 <?php
 
+/**
+ * Class Customer
+ * represents a Customer
+ */
 class Customer
 {
-    private $_fName;
-    private $_lName;
-    private $_phone;
-    private $_addressNum;
-    private $_street;
-    private $_cityCounty;
-    private $_state;
+    private $_fName;        // First name
+    private $_lName;        // Last name
+    private $_phone;        // Phone Number
+    private $_addressNum;   // Address Number
+    private $_street;       // Street lived on
+    private $_cityCounty;   // City / County
+    private $_state;        // State
 
+    /**
+     * Customer constructor.
+     * @param string $fName First Name
+     * @param string $lName Last Name
+     * @param int $phone Phone #
+     * @param int $addressNum Address #
+     * @param string $street Street
+     * @param string $cityCounty City or COunty
+     * @param string $state State
+     */
     public function __construct($fName = "", $lName = "", $phone = 0, $addressNum = 0, $street = "",
                                 $cityCounty = "", $state = "")
     {
@@ -23,7 +37,8 @@ class Customer
     }
 
     /**
-     * @return mixed|string
+     * Gets First Name
+     * @return mixed|string Returns First Name
      */
     public function getFName()
     {
@@ -31,7 +46,8 @@ class Customer
     }
 
     /**
-     * @param mixed|string $fName
+     * Sets First Name
+     * @param mixed|string $fName New First Name
      */
     public function setFName($fName)
     {
@@ -39,7 +55,8 @@ class Customer
     }
 
     /**
-     * @return mixed|string
+     * Gets Last Name
+     * @return mixed|string Returns Last Name
      */
     public function getLName()
     {
@@ -47,7 +64,8 @@ class Customer
     }
 
     /**
-     * @param mixed|string $lName
+     * Sets Last Name
+     * @param mixed|string $lName New Last Name
      */
     public function setLName($lName)
     {
@@ -55,7 +73,8 @@ class Customer
     }
 
     /**
-     * @return int|mixed
+     * Gets Phone #
+     * @return int|mixed Returns Phone #
      */
     public function getPhone()
     {
@@ -63,7 +82,8 @@ class Customer
     }
 
     /**
-     * @param int|mixed $phone
+     * Sets Phone #
+     * @param int|mixed $phone New Phone #
      */
     public function setPhone($phone)
     {
@@ -71,7 +91,8 @@ class Customer
     }
 
     /**
-     * @return int|mixed
+     * Gets Address #
+     * @return int|mixed Returns Address #
      */
     public function getAddressNum()
     {
@@ -79,7 +100,8 @@ class Customer
     }
 
     /**
-     * @param int|mixed $addressNum
+     * Sets Address #
+     * @param int|mixed $addressNum New Address #
      */
     public function setAddressNum($addressNum)
     {
@@ -87,7 +109,8 @@ class Customer
     }
 
     /**
-     * @return mixed|string
+     * Gets Street
+     * @return mixed|string Returns Street
      */
     public function getStreet()
     {
@@ -95,7 +118,8 @@ class Customer
     }
 
     /**
-     * @param mixed|string $street
+     * Sets Street
+     * @param mixed|string $street New Street
      */
     public function setStreet($street)
     {
@@ -103,7 +127,8 @@ class Customer
     }
 
     /**
-     * @return mixed|string
+     * Gets City or County
+     * @return mixed|string Returns City or County
      */
     public function getCityCounty()
     {
@@ -111,7 +136,8 @@ class Customer
     }
 
     /**
-     * @param mixed|string $cityCounty
+     * Sets City or County
+     * @param mixed|string $cityCounty New City or County
      */
     public function setCityCounty($cityCounty)
     {
@@ -119,7 +145,8 @@ class Customer
     }
 
     /**
-     * @return mixed|string
+     * Gets State
+     * @return mixed|string Returns State
      */
     public function getState()
     {
@@ -127,7 +154,8 @@ class Customer
     }
 
     /**
-     * @param mixed|string $state
+     * Sets State
+     * @param mixed|string $state New State
      */
     public function setState($state)
     {
