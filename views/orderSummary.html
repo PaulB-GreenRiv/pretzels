@@ -24,8 +24,8 @@
             phone: {{ @SESSION.customer->getPhone() }}</p>
 
         <h3 id="summPretzType">Pretzel Type:
-            <check if="{{ @SESSION.pretzel instanceof Pretzel }}">
-                Pretzel
+            <check if="{{ !@SESSION.pretzel instanceof StuffedPretzel && !@SESSION.pretzel instanceof PretzelBites }}">
+                Regular Pretzel
             </check>
             <check if="{{ @SESSION.pretzel instanceof StuffedPretzel }}">
                 Stuffed Pretzel
