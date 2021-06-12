@@ -14,7 +14,7 @@
     height: 88vh;
 }
 .vh-90 {
-    height: 90vh;
+    min-height: 90vh;
 }
 
 .row.no-pad {
