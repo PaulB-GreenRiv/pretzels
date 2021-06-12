@@ -13,6 +13,9 @@
 .vh-88 {
     height: 88vh;
 }
+.vh-90 {
+    height: 90vh;
+}
 
 .row.no-pad {
     margin-right:0;
@@ -23,10 +26,13 @@
     font-size: x-large;
 }
 
+#pretzelType input{
+    max-width: 33%;
+}
 .zoom {
     transition: transform .5s; /* Animation */
 }
 
 .zoom:hover {
-    transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    transform: scale(1.1); /*(150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
