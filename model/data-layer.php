@@ -94,21 +94,27 @@ class DataLayer
         $statement = $this->_dbh->prepare($sql);
 
         //3. Bind the parameters
+        $wholeWheat = $_SESSION['pretzel']->getWholeWheat();
+        $toppings = $_SESSION['pretzel']->getToppings();
+
         $statement->bindParam(':orderid', $orderid);
-        $statement->bindParam(':wholewheat', $orderid);
-        $statement->bindParam(':toppings', $orderid);
+        $statement->bindParam(':wholewheat', $wholeWheat);
+        $statement->bindParam(':toppings', $toppings);
 
         $pretzelType = "Regular";
         if ($_SESSION['pretzel'] instanceof StuffedPretzel)
         {
             $pretzelType = "Stuffed";
-            $statement->bindParam(':stuffing', $orderid);
+            $stuffing = $_SESSION['pretzel']->getStuffing();
+            $statement->bindParam(':stuffing', $stuffing);
         }
         else if ($_SESSION['pretzel'] instanceof PretzelBites)
         {
             $pretzelType = "Bitesize";
-            $statement->bindParam(':sauce', $orderid);
-            $statement->bindParam(':amount', $orderid);
+            $sauce = $_SESSION['pretzel']->getSauce();
+            $amount = $_SESSION['pretzel']->getAmount();
+            $statement->bindParam(':sauce', $sauce);
+            $statement->bindParam(':amount', $amount);
         }
         $statement->bindParam(':pretztype', $pretzelType);
 
