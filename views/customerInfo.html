@@ -9,12 +9,12 @@
     <include href="views/includes/mainNavBar.html"/>
 
     <form action="#" method="post" class="form-horizontal">
-        <div class="row no-pad vh-83">
-            <div class="col-10">
-                <h1>Who is ordering this pretzel?</h1>
+        <div class="container vh-90">
+            <div class="">
+                <h1 class="text-center">Who is ordering this pretzel?</h1>
 
                 <!--First Name-->
-                <label>First Name *</label>
+                <label class="h3">First Name *</label>
                 <div class="col">
                     <input class="form-control" type="text" name="firstName" id="firstName" value="{{ @userFName }}">
                 </div>
@@ -24,7 +24,7 @@
                 <br>
 
                 <!--Last Name-->
-                <label>Last Name *</label>
+                <label class="h3">Last Name *</label>
                 <div class="col">
                     <input class="form-control" type="text" name="lastName" id="lastName" value="{{ @userLName }}">
                 </div>
@@ -34,7 +34,7 @@
                 <br>
 
                 <!--Phone #-->
-                <label>Phone # *</label>
+                <label class="h3">Phone # *</label>
                 <div class="col">
                     <input class="form-control" type="number" name="phone" id="phone" value="{{ @userPhone }}">
                 </div>
@@ -44,7 +44,7 @@
                 <br>
 
                 <!--Address #-->
-                <label>Address #</label>
+                <label class="h3">Address #</label>
                 <div class="col">
                     <input class="form-control" type="number" name="address" id="address" value="{{ @userAddress }}">
                 </div>
@@ -52,21 +52,21 @@
                 <br>
 
                 <!--Street-->
-                <label>Street</label>
+                <label class="h3">Street</label>
                 <div class="col">
                     <input class="form-control" type="text" name="street" id="street" value="{{ @userStreet }}">
                 </div>
                 <br>
 
                 <!--City/County-->
-                <label>City / County</label>
+                <label class="h3">City / County</label>
                 <div class="col">
                     <input class="form-control" type="text" name="cityCounty" id="cityCounty" value="{{ @userCityCounty }}">
                 </div>
                 <br>
 
                 <!--State-->
-                <label>State</label>
+                <label class="h3">State</label>
                 <div class="col">
                     <select id="state" class="form-control" name="state">
                         <repeat group="{{ @states }}" value="{{ @state }}">
@@ -78,13 +78,16 @@
                     </select>
                 </div><br>
             </div>
+            <div class="w-100 d-flex justify-content-end">
+                <div class="btn btn-primary">
+                    <input class="form-control btn btn-default text-white"
+                           type="submit" value="Next">
+                </div>
+            </div>
         </div>
 
-        <div class="btn btn-primary">
-            <input class="form-control btn btn-default"
-                   type="submit" value="Next">
-        </div>
-        <br><br><br><br>
+
+
     </form>
 
     <include href="views/includes/footer.html"/>
