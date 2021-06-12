@@ -51,13 +51,15 @@
 
                             <h2>Toppings</h2>
                             <!--Toppings-->
-                            <repeat group="{{ @toppings }}" value="{{ @topping }}">
-                                <label><input type="checkbox" name="toppings[]" onclick="updateOrdSumm(this, 'toppings')"
-                                id="{{ @topping }}" value="{{ @topping }}"
-                                <check if="{{ in_array(@topping, @userToppings) }}"> checked="checked" </check>>
-                                    {{ ucfirst(@topping) }}
-                                </input></label>
-                            </repeat>
+                            <div class="row-cols-sm-2">
+                                <repeat group="{{ @toppings }}" value="{{ @topping }}">
+                                    <label class="col-sm-2"><input type="checkbox" name="toppings[]" onclick="updateOrdSumm(this, 'toppings')"
+                                                  id="{{ @topping }}" class="col" value="{{ @topping }}"
+                                        <check if="{{ in_array(@topping, @userToppings) }}"> checked="checked" </check>>
+                                        {{ ucfirst(@topping) }}
+                                        </input></label>
+                                </repeat>
+                            </div>
 
                         </div>
                     </div>

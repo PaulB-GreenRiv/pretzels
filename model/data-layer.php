@@ -177,7 +177,8 @@ class DataLayer
 
     function getToppings()
     {
-        return array("salt", "pepper", "cheese", "paprika", "anchovies");
+        return array("salt", "pepper", "cheese", "paprika", "anchovies",
+            "Filler", "Filler", "Filler", "Filler", "Filler");
     }
 
     function getStuffings()
