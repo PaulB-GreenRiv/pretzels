@@ -88,9 +88,9 @@ class Controller
             // Sets whole wheat field
             $isWW = $_POST['isWholeWheat'];
             if ($isWW == "yesWholeWheat") {
-                $userWheat = "Yes";
+                $userWheat = "Y";
             } else {
-                $userWheat = "No";
+                $userWheat = "N";
             }
 
             // Continue if there are no errors
@@ -215,6 +215,7 @@ class Controller
 
         // Sets ID and cost fields in the hive
         $this->_f3->set('pretzID', $ordID);
+        $this->_f3->set('test', $pretzID);
         $this->_f3->set('pretzCost', $_SESSION['pretzel']->getCost());
 
         // display the Summary page

@@ -95,7 +95,7 @@ class DataLayer
 
         //3. Bind the parameters
         $wholeWheat = $_SESSION['pretzel']->getWholeWheat();
-        $toppings = $_SESSION['pretzel']->getToppings();
+        $toppings = implode(", ", $_SESSION['pretzel']->getToppings());
 
         $statement->bindParam(':orderid', $orderid);
         $statement->bindParam(':wholewheat', $wholeWheat);
