@@ -174,18 +174,19 @@ class DataLayer
 
     function getToppings()  // Toppings
     {
-        return array("salt", "pepper", "cheese", "paprika", "anchovies",
-            "Filler", "Filler", "Filler", "Filler", "Filler");
+        return array("Salt", "Pepper", "Parmesan Cheese", "Paprika", "Anchovies",
+            "Cinnamon", "Poppy Seeds", "Sesame Seeds", "Dried Garlic", "Dried Onion",
+            "Bacon");
     }
 
     function getStuffings() // Stuffings
     {
-        return array("cheese", "tuna", "bacon");
+        return array("Cream Cheese", "Tuna", "Bacon", );
     }
 
     function getSauces()    // Dipping Sauces
     {
-        return array("cheese", "ketchup", "bbq");
+        return array("Yellow Mustard", "Honey Mustard", "Pizza Sauce", "Cheese", "Ketchup", "BBQ", "Caramel", "Icing");
     }
 
     function getStateShorts()   // States
