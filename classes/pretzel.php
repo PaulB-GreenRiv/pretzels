@@ -44,8 +44,7 @@ class Pretzel
      */
     public function getToppings()
     {
-        if (empty($this->_toppings))
-        {
+        if (empty($this->_toppings)) {
             return array();
         }
         return $this->_toppings;
@@ -67,12 +66,11 @@ class Pretzel
     public function getCost()
     {
         $baseCost = 1.00;
-        if ($this->_wholeWheat == "Yes")
-        {
+        if ($this->_wholeWheat == "Yes") {
             $baseCost = 2.00;
         }
-        foreach ($this->_toppings as $top)
-        {
+
+        foreach ($this->_toppings as $top) {
             $baseCost += 0.25;
         }
 

@@ -45,12 +45,11 @@ class StuffedPretzel extends Pretzel
     public function getCost()
     {
         $baseCost = 2.00;
-        if (parent::getWholeWheat() == "Yes")
-        {
+        if (parent::getWholeWheat() == "Yes") {
             $baseCost = 3.00;
         }
-        foreach (parent::getToppings() as $top)
-        {
+
+        foreach (parent::getToppings() as $top) {
             $baseCost += 0.25;
         }
 

@@ -52,16 +52,14 @@ class Controller
 
             // Validate Pretzel Type
             if (Validation::validateType($userType)) {
-            }
-            else {
+            } else {
                 $this->_f3->set('errors["pretzType"]', 'Please select a valid Type');
             }
 
             // Checks to see if toppings were chosen
             if (!empty($_POST['toppings'])) {
                 $userToppings = $_POST['toppings'];
-            }
-            else {
+            } else {
                 $userToppings = array("Nothing");
             }
 
@@ -69,8 +67,7 @@ class Controller
             if ($userType == "Stuffed") {
                 if (Validation::validateStuffing($userStuffing)) {
                     $userStuffing = $_POST['stuffing'];
-                }
-                else {
+                } else {
                     $this->_f3->set('errors["pretzStuffing"]', 'Please select a valid Stuffing');
                 }
             }
@@ -79,8 +76,7 @@ class Controller
             if ($userType == "Bitesize") {
                 if (Validation::validateAmount($userAmnt)) {
                     $userAmnt = $_POST['amount'];
-                }
-                else {
+                } else {
                     $this->_f3->set('errors["pretzAmnt"]', 'Please select a valid amount (1 or more)');
                 }
             }
@@ -97,17 +93,18 @@ class Controller
             if (empty($this->_f3->get('errors'))) {
 
                 // Sets pretzel type
-                if ($userType == "Stuffed")
-                {
-                    $_SESSION['pretzel'] = new StuffedPretzel($userWheat, $userToppings, $userStuffing);
-                }
-                else if ($userType == "Bitesize")
-                {
-                    $_SESSION['pretzel'] = new PretzelBites($userWheat, $userToppings, $userSauce, $userAmnt);
-                }
-                else
-                {
-                    $_SESSION['pretzel'] = new Pretzel($userWheat, $userToppings);
+                if ($userType == "Stuffed") {
+                    $_SESSION['pretzel'] = new StuffedPretzel(
+                        $userWheat, $userToppings, $userStuffing
+                    );
+                } else if ($userType == "Bitesize") {
+                    $_SESSION['pretzel'] = new PretzelBites(
+                        $userWheat, $userToppings, $userSauce, $userAmnt
+                    );
+                } else {
+                    $_SESSION['pretzel'] = new Pretzel(
+                        $userWheat, $userToppings
+                    );
                 }
 
                 header('location: custInfo');
@@ -179,7 +176,10 @@ class Controller
 
             // Continue if there are no errors
             if (empty($this->_f3->get('errors'))) {
-                $_SESSION['customer'] = new Customer($userFName, $userLName, $userPhone, $userAddress, $userStreet, $userCityCounty, $userState);
+                $_SESSION['customer'] = new Customer(
+                    $userFName, $userLName, $userPhone, $userAddress,
+                    $userStreet, $userCityCounty, $userState
+                );
                 header('location: summary');
             }
         }
@@ -236,8 +236,7 @@ class Controller
             if (sizeof($_POST) > 1) {
                 $_SESSION['fName'] = $_POST['getDBFName'];
                 $_SESSION['lName'] = $_POST['getDBLName'];
-            }
-            else {
+            } else {
                 $_SESSION['orderNum'] = $_POST['getDBOrder'];
             }
             header('location: user');
@@ -277,7 +276,8 @@ class Controller
             // Sets User attributes if user searched by name
             $getID = $result[0]['order_id'];
             $getName = ($result[0]['first_name'] . " " . $result[0]['last_name']);
-            $getAddress = ($result[0]['address'] . " " . $result[0]['street'] . ", (" . $result[0]['city'] . ", " . $result[0]['state'] . ")");
+            $getAddress = ($result[0]['address'] . " "
+                . $result[0]['street'] . ", (" . $result[0]['city'] . ", " . $result[0]['state'] . ")");
 
             // Set Hive attributes
             $this->_f3->set('fullDetails', true);

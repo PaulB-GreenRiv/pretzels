@@ -79,14 +79,11 @@ class DataLayer
         {
             $sql = "INSERT INTO pretzeltest(order_id, is_whole_wheat, pretzel_type, toppings, stuffing) 
                     VALUES (:orderid, :wholewheat, :pretztype, :toppings, :stuffing)";
-        }
-        else if ($_SESSION['pretzel'] instanceof PretzelBites)  // If Bitesize Pretzels were ordered
-        {
-            $sql = "INSERT INTO pretzeltest(order_id, is_whole_wheat, pretzel_type, toppings, dipping_sauce, bites_amount) 
+        } else if ($_SESSION['pretzel'] instanceof PretzelBites) {  // If Bitesize Pretzels were ordered
+            $sql = "INSERT INTO pretzeltest(order_id, is_whole_wheat, pretzel_type, toppings, 
+                        dipping_sauce, bites_amount) 
                     VALUES (:orderid, :wholewheat, :pretztype, :toppings, :sauce, :amount)";
-        }
-        else    // Regular Pretzel order
-        {
+        } else {   // Regular Pretzel order
             $sql = "INSERT INTO pretzeltest(order_id, is_whole_wheat, pretzel_type, toppings) 
                     VALUES (:orderid, :wholewheat, :pretztype, :toppings)";
         }
@@ -105,14 +102,11 @@ class DataLayer
 
         // Binds Parameters from specific pretzel orders
         $pretzelType = "Regular";
-        if ($_SESSION['pretzel'] instanceof StuffedPretzel) // Stuffed fields
-        {
+        if ($_SESSION['pretzel'] instanceof StuffedPretzel) { // Stuffed fields
             $pretzelType = "Stuffed";
             $stuffing = $_SESSION['pretzel']->getStuffing();
             $statement->bindParam(':stuffing', $stuffing);
-        }
-        else if ($_SESSION['pretzel'] instanceof PretzelBites)  // Bites Fields
-        {
+        } else if ($_SESSION['pretzel'] instanceof PretzelBites) { // Bites Fields
             $pretzelType = "Bitesize";
             $sauce = $_SESSION['pretzel']->getSauce();
             $amount = $_SESSION['pretzel']->getAmount();

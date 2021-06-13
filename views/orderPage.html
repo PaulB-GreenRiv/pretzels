@@ -28,11 +28,10 @@
                                    <check if="{{ $type == @userType }}">checked="checked"</check>
                             >
 
-                            <label class="col col-xl-3 btn btn-outline-dark mx-1 mx-xl-4 zoom" for="{{ @type }}"> {{ @type }}</label>
+                            <label class="col col-xl-3 btn btn-outline-dark mx-1 mx-xl-4 zoom" for="{{ @type }}">
+                                {{ @type }}</label>
                         </repeat>
-                        <!--<label class="col"><input type="radio" name="pretzType" id="regular" value="Regular"> Regular</label>
-                        <label class="col"><input type="radio" name="pretzType" id="stuffed" value="Stuffed"> Stuffed</label>
-                        <label class="col"><input type="radio" name="pretzType" id="bitesize" value="Bitesize"> Bitesize</label>-->
+
                         <check if="{{ isset(@errors['pretzType']) }}">
                             <span class="err text-danger">*{{ @errors['pretzType'] }}</span>
                         </check>
@@ -46,14 +45,16 @@
                         <div class="container row form-group" id="anyFields">
                             <h2>Whole Wheat</h2>
                             <!--Whole Wheat-->
-                            <label><input type="checkbox" id="isWholeWheat" name="isWholeWheat" value="yesWholeWheat" onclick="updateOrdSumm(this, 'wholeWheat')"
+                            <label><input type="checkbox" id="isWholeWheat" name="isWholeWheat" value="yesWholeWheat"
+                                          onclick="updateOrdSumm(this, 'wholeWheat')"
                                 <check if="{{ @userWheat == 'Yes' }}">checked="checked"</check>> Whole Wheat</label>
 
                             <h2>Toppings</h2>
                             <!--Toppings-->
                             <div class="row-cols-sm-2">
                                 <repeat group="{{ @toppings }}" value="{{ @topping }}">
-                                    <label class="col-sm-2"><input type="checkbox" name="toppings[]" onclick="updateOrdSumm(this, 'toppings')"
+                                    <label class="col-sm-2"><input type="checkbox" name="toppings[]"
+                                                                   onclick="updateOrdSumm(this, 'toppings')"
                                                   id="{{ @topping }}" class="col" value="{{ @topping }}"
                                         <check if="{{ in_array(@topping, @userToppings) }}"> checked="checked" </check>>
                                         {{ ucfirst(@topping) }}
@@ -74,7 +75,8 @@
                             <select id="stuffing" class="form-control" name="stuffing">
                                 <repeat group="{{ @stuffings }}" value="{{ @stuffing }}">
                                     <option value="{{ @stuffing }}"
-                                    <check if="{{ $stuffing == @userStuffing }}">selected</check>>{{ ucfirst(@stuffing) }}</option>
+                                    <check if="{{ $stuffing == @userStuffing }}">selected</check>>
+                                    {{ ucfirst(@stuffing) }}</option>
                                 </repeat>
                                 <!--<option value="cheese"> Cheese</option>
                                 <option value="tuna"> Tuna</option>
@@ -97,7 +99,8 @@
                             <select id="dipping" class="form-control" name="sauce">
                                 <repeat group="{{ @sauces }}" value="{{ @sauce }}">
                                     <option value="{{ @sauce }}"
-                                    <check if="{{ $sauce == @userSauce }}">selected</check>>{{ ucfirst(@sauce) }}</option>
+                                    <check if="{{ $sauce == @userSauce }}">selected</check>>
+                                    {{ ucfirst(@sauce) }}</option>
                                 </repeat>
                                 <!--<option value="cheese"> Cheese</option>
                                 <option value="ketchup"> Ketchup</option>
