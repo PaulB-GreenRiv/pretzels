@@ -1,5 +1,6 @@
 <?php
 
+// Database configuration
 require_once ($_SERVER['DOCUMENT_ROOT']."/../config.php");
 
 class DataLayer
@@ -14,7 +15,7 @@ class DataLayer
         try {
             $this->_dbh = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
             //echo "Connected to database!";
-        }
+        }   //If the connection fails
         catch (PDOException $e) {
             echo $e->getMessage();
             die ("Golly Gee!");
@@ -74,17 +75,17 @@ class DataLayer
     {
         //1. Define the query
         $sql = "";
-        if ($_SESSION['pretzel'] instanceof StuffedPretzel)
+        if ($_SESSION['pretzel'] instanceof StuffedPretzel) // If a Stuffed Pretzel was ordered
         {
             $sql = "INSERT INTO pretzeltest(order_id, is_whole_wheat, pretzel_type, toppings, stuffing) 
                     VALUES (:orderid, :wholewheat, :pretztype, :toppings, :stuffing)";
         }
-        else if ($_SESSION['pretzel'] instanceof PretzelBites)
+        else if ($_SESSION['pretzel'] instanceof PretzelBites)  // If Bitesize Pretzels were ordered
         {
             $sql = "INSERT INTO pretzeltest(order_id, is_whole_wheat, pretzel_type, toppings, dipping_sauce, bites_amount) 
                     VALUES (:orderid, :wholewheat, :pretztype, :toppings, :sauce, :amount)";
         }
-        else
+        else    // Regular Pretzel order
         {
             $sql = "INSERT INTO pretzeltest(order_id, is_whole_wheat, pretzel_type, toppings) 
                     VALUES (:orderid, :wholewheat, :pretztype, :toppings)";
@@ -97,18 +98,20 @@ class DataLayer
         $wholeWheat = $_SESSION['pretzel']->getWholeWheat();
         $toppings = implode(", ", $_SESSION['pretzel']->getToppings());
 
+        // Binds Parameters of all pretzel orders
         $statement->bindParam(':orderid', $orderid);
         $statement->bindParam(':wholewheat', $wholeWheat);
         $statement->bindParam(':toppings', $toppings);
 
+        // Binds Parameters from specific pretzel orders
         $pretzelType = "Regular";
-        if ($_SESSION['pretzel'] instanceof StuffedPretzel)
+        if ($_SESSION['pretzel'] instanceof StuffedPretzel) // Stuffed fields
         {
             $pretzelType = "Stuffed";
             $stuffing = $_SESSION['pretzel']->getStuffing();
             $statement->bindParam(':stuffing', $stuffing);
         }
-        else if ($_SESSION['pretzel'] instanceof PretzelBites)
+        else if ($_SESSION['pretzel'] instanceof PretzelBites)  // Bites Fields
         {
             $pretzelType = "Bitesize";
             $sauce = $_SESSION['pretzel']->getSauce();
@@ -170,28 +173,28 @@ class DataLayer
         return $result;
     }
 
-    function getTypes()
+    function getTypes() // Pretzel Types
     {
         return array("Regular", "Stuffed", "Bitesize");
     }
 
-    function getToppings()
+    function getToppings()  // Toppings
     {
         return array("salt", "pepper", "cheese", "paprika", "anchovies",
             "Filler", "Filler", "Filler", "Filler", "Filler");
     }
 
-    function getStuffings()
+    function getStuffings() // Stuffings
     {
         return array("cheese", "tuna", "bacon");
     }
 
-    function getSauces()
+    function getSauces()    // Dipping Sauces
     {
         return array("cheese", "ketchup", "bbq");
     }
 
-    function getStateShorts()
+    function getStateShorts()   // States
     {
         return array("AK", "AL", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN",
             "IO", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY",
