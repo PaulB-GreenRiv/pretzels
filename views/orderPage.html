@@ -21,7 +21,7 @@
                         <h2>Pretzel Type *</h2>
                         <!--Select a Pretzel-->
                         <repeat group="{{ @types }}" value="{{ @type }}">
-                            <div class="col-12 col-md col-xl-3 mb-sm-3 mb-xs-3 zoom">
+                            <div class="col-12 col-md col-xl-3 mb-3 zoom">
                                 <div class="image-container-pretzelType">
                                     <img src="images/{{ @type }}.jpg" class="img-pretzelType-w100">
                                 </div>
@@ -56,9 +56,9 @@
 
                             <h2>Toppings</h2>
                             <!--Toppings-->
-                            <div class="row-cols-sm-2">
+                            <div class="row">
                                 <repeat group="{{ @toppings }}" value="{{ @topping }}">
-                                    <label class="col-sm-2"><input type="checkbox" name="toppings[]"
+                                    <label class="col-sm-6 col-lg-3 col-xl-2"><input type="checkbox" name="toppings[]"
                                                                    onclick="updateOrdSumm(this, 'toppings')"
                                                   id="{{ @topping }}" class="col" value="{{ @topping }}"
                                         <check if="{{ in_array(@topping, @userToppings) }}"> checked="checked" </check>>
