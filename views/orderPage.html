@@ -121,18 +121,24 @@
             <!-- This is summary div (right) -->
             <div id="orderSummary_div" class="col-12 col-md-4 col-lg-2 bg-warning p-0 mt-2 m-md-0 shadow">
                 <div id="orderSummary" class="h-75 p-2">
-                    <p id="getType">Pretzel Type: </p>
-                    <p id="getWheat">Whole Wheat: </p>
-                    <p id="getToppings">Toppings: </p>
-                    <p id="getStuffing">Stuffing: </p>
-                    <p id="getSauce">Sauce: </p>
-                    <p id="getAmount">Amount: </p>
+                    <h3 class="text-center">Price Calculation</h3>
+                    <p id="getType" class="mb-0">Pretzel Type: </p>
+                    <span id="typeValue"></span>
+
+                    <p id="getToppings" class="mb-0 mt-3">Toppings: </p>
+                    <span id="toppingsValue"></span>
+
+                    <p id="getWheat" class="mb-0 mt-3"></p>
+                    <span id="wheatValue"></span>
+
+                    <p id="getAmount" class="mb-0 mt-3"></p>
+                    <span id="amountValue"></span>
                 </div>
 
                 <!-- Submit order and price here -->
                 <div class="h-25 border border-dark rounded text-center">
                     <div class="">
-                        <h3 id="pretzelCost">$0.00</h3>
+                        <h3 id="pretzelCost">Total: $0.00</h3>
                     </div>
 
                     <div class="btn btn-primary ">

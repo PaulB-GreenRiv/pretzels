@@ -7,6 +7,7 @@ let toppingsCost = 0;
 
 let amount = 0;
 let amountCost = 0;
+let amountCoefficient = 0.20; //$0.20 per regular, $0.25 per whole wheat
 
 
 
@@ -22,6 +23,7 @@ function updateOrdSumm(fieldData, field)
 
         //Display progress
         document.getElementById("getType").innerHTML = "Pretzel Type: " + (fieldData.value).trim();
+        document.getElementById("typeValue").innerHTML = "+ $" + typeCost.toFixed(2);
     }
 //____________________________________________________________________________________________________________//
 
@@ -32,17 +34,40 @@ function updateOrdSumm(fieldData, field)
         let getCheckBox = document.getElementById("isWholeWheat").checked;
         if (getCheckBox) {
             wholeWheatCost = 1.00
-            document.getElementById("getWheat").innerHTML = "Whole Wheat: Yes";
+            document.getElementById("getWheat").innerHTML = "Whole Wheat";
+            document.getElementById("wheatValue").innerHTML = "+ $" + wholeWheatCost.toFixed(2);
 
             //change amount cost if whole wheat is selected
-            amountCost = (amount * 0.25);
+            amountCoefficient = 0.25;
+            amountCost = (amount * amountCoefficient);
+
+            // If Bitesize selected. Display correct message for bitesize, since coefficient was changed
+            if(document.getElementById("Bitesize").checked) {
+                document.getElementById("amountValue").innerText =
+                    "+ $" + amountCost.toFixed(2) +
+                    " (" + amount + " x $" + amountCoefficient.toFixed(2) + ")";
+            }else {
+                document.getElementById("amountValue").innerText = "";
+            }
         }
         else {
             wholeWheatCost = 0
-            document.getElementById("getWheat").innerHTML = "Whole Wheat: No";
+            document.getElementById("getWheat").innerHTML = "";
+            document.getElementById("wheatValue").innerHTML = "";
 
             //change amount cost if whole wheat is NOT selected
-            amountCost = (amount * 0.20);
+            amountCoefficient = 0.20;
+            amountCost = (amount * amountCoefficient);
+
+
+            // If Bitesize selected. Display correct message for bitesize, since coefficient was changed
+            if(document.getElementById("Bitesize").checked) {
+                document.getElementById("amountValue").innerText =
+                    "+ $" + amountCost.toFixed(2) +
+                    " (" + amount + " x $" + amountCoefficient.toFixed(2) + ")";
+            }else {
+                document.getElementById("amountValue").innerText = "";
+            }
         }
     }
 //____________________________________________________________________________________________________________//
@@ -71,21 +96,13 @@ function updateOrdSumm(fieldData, field)
         // Calculate topping price based on selected elements
         toppingsCost = toppingsSelected.length * 0.25;
 
-        // Display toppings on the page
-        document.getElementById("getToppings").innerHTML = "Toppings: " + toppingsSelected.join(" + ");
+        // Display toppings and price on the page
+        document.getElementById("getToppings").innerHTML =
+            "Toppings: " + toppingsSelected.join(" + ");
+
+        document.getElementById("toppingsValue").innerHTML =
+            "+ $" + toppingsCost + " (" + toppingsSelected.length + " x $0.25)"
     }
-//____________________________________________________________________________________________________________//
-
-
-    // Stuffing Cost
-//============================================================================================================//
-    //TODO:
-//____________________________________________________________________________________________________________//
-
-
-    // Sauce Cost
-//============================================================================================================//
-    //TODO:
 //____________________________________________________________________________________________________________//
 
 
@@ -103,20 +120,28 @@ function updateOrdSumm(fieldData, field)
                 amount = 1;
             }
 
+
+
             // change the price according isWholeWheat selection
             if (document.getElementById("isWholeWheat").checked) {
-                amountCost = (amount * 0.25);
+                amountCoefficient = 0.25; //set correct coefficient for whole wheat
+                amountCost = (amount * amountCoefficient);
             } else {
-                amountCost = (amount * 0.20);
+                amountCoefficient = 0.20; //set correct coefficient for NOT whole wheat
+                amountCost = (amount * amountCoefficient);
             }
             //display amount on the page
-            document.getElementById("getAmount").innerText = "Amount: " + amount;
+            document.getElementById("getAmount").innerText = "Bitesize Amount: " + amount;
+
+            document.getElementById("amountValue").innerText =
+                "+ $" + amountCost.toFixed(2) +
+                " (" + amount + " x $" + amountCoefficient.toFixed(2) + ")";
         }
     }
     // bite size NOT selected then set proper price and message
     else {
         amountCost = 0;
-        document.getElementById("getAmount").innerText = "Amount: ";
+        document.getElementById("getAmount").innerText = "";
     }
 //____________________________________________________________________________________________________________//
 
@@ -125,77 +150,8 @@ function updateOrdSumm(fieldData, field)
     let totalCost = typeCost + wholeWheatCost + toppingsCost + amountCost;
 
     // Set total cost ot appropriate format
-    let costDisplay = "$" + totalCost.toFixed(2);
+    let costDisplay = "Total: $" + totalCost.toFixed(2);
 
     // Display total cost on html page
     document.getElementById("pretzelCost").innerText = costDisplay;
 }
-
-
-/*
-function updateOrdSumm(fieldData, field)
-{
-    // Grabs default cost from HTML (0.00)
-    let cost = document.getElementById("pretzelCost").innerText;
-    cost = cost.substring(1, cost.length).trim();
-    cost = parseFloat(cost);
-
-    // Type costs
-    if (field === 'type') {
-        if ((fieldData.value).trim() === "Regular") {cost = 1.00}       // Regular
-        else if ((fieldData.value).trim() === "Stuffed") {cost = 2.00}  // Stuffed
-        else {cost = 1.00}                                              // Bitesize
-
-        //Display progress
-        document.getElementById("getType").innerHTML = "Pretzel Type: " + (fieldData.value).trim();
-    }
-
-    // Whole wheat cost ($1 whole wheat)
-    if (field === 'wholeWheat') {
-        let getCheckBox = document.getElementById("isWholeWheat").checked;
-        if (getCheckBox) {
-            cost += 1.00
-            document.getElementById("getWheat").innerHTML = "Whole Wheat: True";
-        }
-        else {
-            cost -= 1.00
-            document.getElementById("getWheat").innerHTML = "Whole Wheat: False";
-        }
-    }
-
-    // Toppings ($0.25 per topping)
-    if (field === 'toppings') {
-        let getVal = fieldData.value;
-
-        if (fieldData.checked) {
-            cost += 0.25
-            document.getElementById("getToppings").innerHTML += (getVal + " ");
-        }
-        else {
-            cost -= 0.25;
-            document.getElementById("getToppings").innerText -= getVal;
-        }
-
-    }
-
-    // Stuffing Cost
-
-    // Sauce Cost
-
-    // Amount cost ($0.20 per regular, $0.25 per whole wheat)
-    if (field === "amount") {
-        let totCost = 0.00;
-        if (document.getElementById("isWholeWheat").checked) {
-            totCost = (fieldData.value * 0.25);
-        }
-        else {
-            totCost = (fieldData.value * 0.20);
-        }
-        cost += totCost;
-        document.getElementById("getAmount").innerText = "Amount: " + fieldData.value;
-    }
-
-    let costDisplay = "$" + cost.toFixed(2);
-    document.getElementById("pretzelCost").innerText = costDisplay;
-}
-*/
