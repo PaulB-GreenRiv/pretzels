@@ -109,7 +109,7 @@
 
                             <label for="amount"><h2>Amount # **</h2></label>
                             <input type="number" class="form-control" name="amount" id="amount"
-                                   value="{{ @userAmnt }}" onchange="updateOrdSumm(this, 'amount')">
+                                   value="{{ @userAmnt }}" min="1" onchange="updateOrdSumm(this, 'amount')">
                             <check if="{{ isset(@errors['pretzAmnt']) }}">
                                 <span class="err">{{ @errors['pretzAmnt'] }}</span>
                             </check>

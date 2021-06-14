@@ -4,6 +4,6 @@
  */
 function showContent(selector)
 {
-    document.getElementById("stuffed_div").style.display = (selector.value).trim() === "Stuffed" ? 'block' : 'none';
-    document.getElementById("bites_div").style.display = (selector.value).trim() === "Bitesize" ? 'block' : 'none';
+    document.getElementById("stuffed_div").style.display = document.getElementById("Stuffed").checked ? 'block' : 'none';
+    document.getElementById("bites_div").style.display = document.getElementById("Bitesize").checked ? 'block' : 'none';
 }
