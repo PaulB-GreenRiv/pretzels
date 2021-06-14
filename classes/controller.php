@@ -174,6 +174,21 @@ class Controller
                 $this->_f3->set('errors["phone"]', 'Please enter a valid phone number (10 digits, style: ##########)');
             }
 
+            // Validate Address #
+            if (Validation::validateAddress($userAddress)) {
+                $userAddress = $_POST["address"];
+            } else {
+                $this->_f3->set('errors["address"]', 'Please enter a valid address number, 
+                or none at all (5 digits, style: #####)');
+            }
+
+            // Validate State
+            if (Validation::validateState($userState)) {
+                $userState = $_POST["state"];
+            } else {
+                $this->_f3->set('errors["state"]', 'Please select a valid state');
+            }
+
             // Continue if there are no errors
             if (empty($this->_f3->get('errors'))) {
                 $_SESSION['customer'] = new Customer(

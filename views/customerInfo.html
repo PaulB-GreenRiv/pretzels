@@ -49,6 +49,9 @@
                     <input class="form-control" type="number" name="address" id="address" value="{{ @userAddress }}">
                 </div>
                 <label for="address">Just the ##### part</label>
+                <check if="{{ isset(@errors['address']) }}">
+                    <br><span class="err">{{ @errors['address'] }}</span>
+                </check>
                 <br>
 
                 <!--Street-->
@@ -77,7 +80,11 @@
                             </option>
                         </repeat>
                     </select>
-                </div><br>
+                </div>
+                <check if="{{ isset(@errors['state']) }}">
+                    <span class="err">{{ @errors['state'] }}</span>
+                </check>
+                <br>
             </div>
             <div class="w-100 d-flex justify-content-end">
                 <div class="btn btn-primary">
