@@ -21,15 +21,20 @@
                         <h2>Pretzel Type *</h2>
                         <!--Select a Pretzel-->
                         <repeat group="{{ @types }}" value="{{ @type }}">
-                            <input class="btn-check"  type="radio" name="pretzType"
-                                   id="{{ @type }}" value="{{ @type }}"
-                                   onclick="showContent(this), updateOrdSumm(this, 'type')"
-                                   autocomplete="off"
-                                   <check if="{{ $type == @userType }}">checked="checked"</check>
-                            >
+                            <div class="col-12 col-md col-xl-3 mb-sm-3 mb-xs-3 zoom">
+                                <div class="image-container-pretzelType">
+                                    <img src="images/{{ @type }}.jpg" class="img-pretzelType-w100">
+                                </div>
+                                <input class="btn-check"  type="radio" name="pretzType"
+                                       id="{{ @type }}" value="{{ @type }}"
+                                       onclick="showContent(this), updateOrdSumm(this, 'type')"
+                                       autocomplete="off"
+                                       <check if="{{ $type == @userType }}">checked="checked"</check>
+                                >
 
-                            <label class="col col-xl-3 btn btn-outline-dark mx-1 mx-xl-4 zoom" for="{{ @type }}">
-                                {{ @type }}</label>
+                                <label class="w-100  btn btn-outline-dark mx-0 mt-1 zoom" for="{{ @type }}">
+                                    {{ @type }}</label>
+                            </div>
                         </repeat>
 
                         <check if="{{ isset(@errors['pretzType']) }}">
