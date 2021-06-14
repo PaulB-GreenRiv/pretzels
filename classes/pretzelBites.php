@@ -69,13 +69,16 @@ class PretzelBites extends Pretzel
         if (parent::getWholeWheat() == "Yes") {
             $baseCost += (0.25 * $this->_amount);
         } else {
-            $baseCost += (0.25 * $this->_amount);
+            $baseCost += (0.20 * $this->_amount);
         }
 
-        foreach (parent::getToppings() as $top) {
-            $baseCost += 0.25;
+        if (count(parent::getToppings()) > 0)
+        {
+            foreach (parent::getToppings() as $top) {
+                $baseCost += 0.25;
+            }
         }
 
-        return $baseCost;
+        return number_format($baseCost, 2, '.', ',');
     }
 }

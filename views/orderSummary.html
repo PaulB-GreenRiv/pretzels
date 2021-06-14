@@ -19,9 +19,9 @@
         -->
 
         <h2>Order To: {{ @SESSION.customer->getFName() }} {{ @SESSION.customer->getLName() }}</h2>
-        <p>( {{ @SESSION.customer->getAddressNum() }}, {{ @SESSION.customer->getStreet() }} )
+        <h3>( {{ @SESSION.customer->getAddressNum() }}, {{ @SESSION.customer->getStreet() }} )
             {{ @SESSION.customer->getCityCounty() }} {{ @SESSION.customer->getState() }}
-            phone: {{ @SESSION.customer->getPhone() }}</p>
+            phone: {{ @SESSION.customer->getPhone() }}</h3>
 
         <h3 id="summPretzType">Pretzel Type:
             <check if="{{ !@SESSION.pretzel instanceof StuffedPretzel && !@SESSION.pretzel instanceof PretzelBites }}">

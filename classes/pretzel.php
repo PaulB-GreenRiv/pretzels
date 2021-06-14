@@ -70,10 +70,13 @@ class Pretzel
             $baseCost = 2.00;
         }
 
-        foreach ($this->_toppings as $top) {
-            $baseCost += 0.25;
+        if (count($this->_toppings) > 0)
+        {
+            foreach ($this->_toppings as $top) {
+                $baseCost += 0.25;
+            }
         }
 
-        return $baseCost;
+        return number_format($baseCost, 2, '.', ',');
     }
 }
