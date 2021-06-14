@@ -13,6 +13,7 @@ let amountCoefficient = 0.20; //$0.20 per regular, $0.25 per whole wheat
 
 function updateOrdSumm(fieldData, field)
 {
+
     // Type costs
 //============================================================================================================//
     if (field === 'type') {
@@ -37,8 +38,17 @@ function updateOrdSumm(fieldData, field)
             document.getElementById("wheatValue").innerHTML = "+ $" + wholeWheatCost.toFixed(2);
 
             //change amount cost if whole wheat is selected
+            amountCoefficient = 0.25;
+            amountCost = (amount * amountCoefficient);
+
             // If Bitesize selected. Display correct message for bitesize, since coefficient was changed
-            setAndDisplayAmount(fieldData, field);
+            if(document.getElementById("Bitesize").checked) {
+                document.getElementById("amountValue").innerText =
+                    "+ $" + amountCost.toFixed(2) +
+                    " (" + amount + " x $" + amountCoefficient.toFixed(2) + ")";
+            }else {
+                document.getElementById("amountValue").innerText = "";
+            }
         }
         else {
             wholeWheatCost = 0
@@ -46,8 +56,18 @@ function updateOrdSumm(fieldData, field)
             document.getElementById("wheatValue").innerHTML = "";
 
             //change amount cost if whole wheat is NOT selected
+            amountCoefficient = 0.20;
+            amountCost = (amount * amountCoefficient);
+
+
             // If Bitesize selected. Display correct message for bitesize, since coefficient was changed
-            setAndDisplayAmount(fieldData, field);
+            if(document.getElementById("Bitesize").checked) {
+                document.getElementById("amountValue").innerText =
+                    "+ $" + amountCost.toFixed(2) +
+                    " (" + amount + " x $" + amountCoefficient.toFixed(2) + ")";
+            }else {
+                document.getElementById("amountValue").innerText = "";
+            }
         }
     }
 //____________________________________________________________________________________________________________//
@@ -88,9 +108,41 @@ function updateOrdSumm(fieldData, field)
 
     // Amount totalCost ($0.20 per regular, $0.25 per whole wheat)
 //============================================================================================================//
+    //execute only if bite size selected, otherwise do not display amount
+    if(document.getElementById("Bitesize").checked) {
+    if (field === "amount") {
 
-    setAndDisplayAmount(fieldData, field);
+            // Set the amount according user input
+            amount = fieldData.value;
 
+            // if amount less than 1 - set to 1.
+            if (amount < 1) {
+                amount = 1;
+            }
+
+
+
+            // change the price according isWholeWheat selection
+            if (document.getElementById("isWholeWheat").checked) {
+                amountCoefficient = 0.25; //set correct coefficient for whole wheat
+                amountCost = (amount * amountCoefficient);
+            } else {
+                amountCoefficient = 0.20; //set correct coefficient for NOT whole wheat
+                amountCost = (amount * amountCoefficient);
+            }
+            //display amount on the page
+            document.getElementById("getAmount").innerText = "Bitesize Amount: " + amount;
+
+            document.getElementById("amountValue").innerText =
+                "+ $" + amountCost.toFixed(2) +
+                " (" + amount + " x $" + amountCoefficient.toFixed(2) + ")";
+        }
+    }
+    // bite size NOT selected then set proper price and message
+    else {
+        amountCost = 0;
+        document.getElementById("getAmount").innerText = "";
+    }
 //____________________________________________________________________________________________________________//
 
 
@@ -102,43 +154,4 @@ function updateOrdSumm(fieldData, field)
 
     // Display total cost on html page
     document.getElementById("pretzelCost").innerText = costDisplay;
-}
-
-function setAndDisplayAmount(fieldData, field)
-{
-    //execute only if bite size selected, otherwise do not display amount
-    if(document.getElementById("Bitesize").checked) {
-
-        if (field === "amount" ) {
-            // Set the amount according user input
-            amount = fieldData.value;
-
-            // if amount less than 1 - set to 1.
-            if (amount < 1) {
-                amount = 1;
-            }
-        }
-
-        // change the price according isWholeWheat selection
-        if (document.getElementById("isWholeWheat").checked) {
-            amountCoefficient = 0.25; //set correct coefficient for whole wheat
-            amountCost = (amount * amountCoefficient);
-        } else {
-            amountCoefficient = 0.20; //set correct coefficient for NOT whole wheat
-            amountCost = (amount * amountCoefficient);
-        }
-
-        //display amount on the page
-        document.getElementById("getAmount").innerText = "Bitesize Amount: " + amount;
-
-        document.getElementById("amountValue").innerText =
-            "+ $" + amountCost.toFixed(2) +
-            " (" + amount + " x $" + amountCoefficient.toFixed(2) + ")";
-
-    }
-    // bite size NOT selected then set proper price and message
-    else {
-        document.getElementById("amountValue").innerText = "";
-        document.getElementById("getAmount").innerText = "";
-    }
 }
