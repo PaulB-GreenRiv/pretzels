@@ -13,7 +13,6 @@ let amountCoefficient = 0.20; //$0.20 per regular, $0.25 per whole wheat
 
 function updateOrdSumm(fieldData, field)
 {
-
     // Type costs
 //============================================================================================================//
     if (field === 'type') {
@@ -110,7 +109,7 @@ function updateOrdSumm(fieldData, field)
 //============================================================================================================//
     //execute only if bite size selected, otherwise do not display amount
     if(document.getElementById("Bitesize").checked) {
-    if (field === "amount") {
+        if (field === "amount") {
 
             // Set the amount according user input
             amount = fieldData.value;
@@ -119,8 +118,6 @@ function updateOrdSumm(fieldData, field)
             if (amount < 1) {
                 amount = 1;
             }
-
-
 
             // change the price according isWholeWheat selection
             if (document.getElementById("isWholeWheat").checked) {
