@@ -19,9 +19,16 @@
         -->
 
         <h2>Order To: {{ @SESSION.customer->getFName() }} {{ @SESSION.customer->getLName() }}</h2>
-        <h3>( {{ @SESSION.customer->getAddressNum() }}, {{ @SESSION.customer->getStreet() }} )
-            {{ @SESSION.customer->getCityCounty() }} {{ @SESSION.customer->getState() }}
-            , phone: {{ @SESSION.customer->getPhone() }}</h3><br>
+        <h3>
+            <check if="{{ @SESSION.customer->getAddressNum() != null && @SESSION.customer->getStreet() != null}}">
+                (
+                <check if="{{ @SESSION.customer->getAddressNum() != null }}">{{ @SESSION.customer->getAddressNum() }}</check>
+                ,
+                <check if="{{ @SESSION.customer->getStreet() != null }}">{{ @SESSION.customer->getStreet() }}</check>
+                )
+            </check>
+            {{ @SESSION.customer->getCityCounty() }} {{ @SESSION.customer->getState() }},
+            phone: {{ @SESSION.customer->getPhone() }}</h3><br>
 
         <h2 id="summPretzType">Pretzel Type:
             <check if="{{ !@SESSION.pretzel instanceof StuffedPretzel && !@SESSION.pretzel instanceof PretzelBites }}">
@@ -34,7 +41,14 @@
                 Pretzel Bites
             </check>
         </h2>
-        <h3 id="summWholWheat">Whole Wheat: {{ @SESSION.pretzel->getWholeWheat() }}</h3>
+        <h3 id="summWholWheat">Whole Wheat:
+            <check if="{{ @SESSION.pretzel->getWholeWheat() == 'Y' }}">
+                Yes
+            </check>
+            <check if="{{ @SESSION.pretzel->getWholeWheat() == 'N' }}">
+                No
+            </check>
+        </h3>
         <h3>Toppings: {{ implode(", ", @SESSION.pretzel->getToppings()) }}</h3>
         <p id="summToppings"></p>
 

@@ -137,7 +137,7 @@ class Controller
         $userFName = "";
         $userLName = "";
         $userPhone = 0;
-        $userAddress = 0;
+        $userAddress = "";
         $userStreet = "";
         $userCityCounty = "";
         $userState = "";

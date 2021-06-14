@@ -66,7 +66,7 @@ class Pretzel
     public function getCost()
     {
         $baseCost = 1.00;
-        if ($this->_wholeWheat == "Yes") {
+        if ($this->_wholeWheat == "Y") {
             $baseCost = 2.00;
         }
 
