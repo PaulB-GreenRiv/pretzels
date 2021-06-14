@@ -42,10 +42,10 @@ This site allows users to remotely order Stuffed, Bitesize or Regular pretzels. 
   * Our site doesn't incorporate Ajax
 
 ## UML Class Diagram
-https://github.com/PaulB-GreenRiv/pretzels/blob/33d8079ebf58b43b97524fa2fa5d3a241df90b07/UMLDiagram.png
+![Class Diagram - Paul Butler](https://github.com/PaulB-GreenRiv/pretzels/blob/33d8079ebf58b43b97524fa2fa5d3a241df90b07/UMLDiagram.png)
 
 ## ER Database Diagram
-https://github.com/PaulB-GreenRiv/pretzels/blob/33d8079ebf58b43b97524fa2fa5d3a241df90b07/DatabaseDiagram.PNG
+![Database Diagram - Yurii Zhuk](https://github.com/PaulB-GreenRiv/pretzels/blob/33d8079ebf58b43b97524fa2fa5d3a241df90b07/DatabaseDiagram.PNG)
 
 
 
