@@ -50,7 +50,14 @@
 
         <h1>Your order number is: {{ @pretzID }}</h1>
         <h2 id="TotalPrice">Total Cost: {{ @pretzCost }}</h2>
+
+        <br>
+
+        <a type="button" class="btn btn-secondary zoom font-x-large" href="home" id="goHome">Home Page</a>
+        <a type="button" class="btn btn-primary zoom font-x-large" href="order" id="goOrder">Order Again</a>
+        <a type="button" class="btn btn-info zoom font-x-large" href="searchBy" id="goOrders">Check Orders</a>
     </div>
+
 
 
     <include href="views/includes/footer.html"/>
