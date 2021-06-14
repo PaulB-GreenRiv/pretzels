@@ -72,8 +72,7 @@ class PretzelBites extends Pretzel
             $baseCost += (0.20 * $this->_amount);
         }
 
-        if (count(parent::getToppings()) > 0)
-        {
+        if (in_array("Nothing", parent::getToppings())) {
             foreach (parent::getToppings() as $top) {
                 $baseCost += 0.25;
             }

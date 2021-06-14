@@ -49,8 +49,7 @@ class StuffedPretzel extends Pretzel
             $baseCost = 3.00;
         }
 
-        if (count(parent::getToppings()) > 0)
-        {
+        if (in_array("Nothing", parent::getToppings())) {
             foreach (parent::getToppings() as $top) {
                 $baseCost += 0.25;
             }

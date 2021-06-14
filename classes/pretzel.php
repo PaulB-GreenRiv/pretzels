@@ -70,8 +70,7 @@ class Pretzel
             $baseCost = 2.00;
         }
 
-        if (count($this->_toppings) > 0)
-        {
+        if (!in_array("Nothing", $this->_toppings)) {
             foreach ($this->_toppings as $top) {
                 $baseCost += 0.25;
             }
