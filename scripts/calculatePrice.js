@@ -9,7 +9,7 @@ let amount = 0;
 let amountCost = 0;
 let amountCoefficient = 0.20; //$0.20 per regular, $0.25 per whole wheat
 
-
+let totalCost =0;
 
 function updateOrdSumm(fieldData, field)
 {
@@ -43,10 +43,14 @@ function updateOrdSumm(fieldData, field)
 
             // If Bitesize selected. Display correct message for bitesize, since coefficient was changed
             if(document.getElementById("Bitesize").checked) {
+                //display amount on the page
+                document.getElementById("getAmount").innerText = "Bitesize Amount: " + amount;
                 document.getElementById("amountValue").innerText =
                     "+ $" + amountCost.toFixed(2) +
                     " (" + amount + " x $" + amountCoefficient.toFixed(2) + ")";
             }else {
+                //display amount on the page
+                document.getElementById("getAmount").innerText = "";
                 document.getElementById("amountValue").innerText = "";
             }
         }
@@ -62,10 +66,14 @@ function updateOrdSumm(fieldData, field)
 
             // If Bitesize selected. Display correct message for bitesize, since coefficient was changed
             if(document.getElementById("Bitesize").checked) {
+                //display amount on the page
+                document.getElementById("getAmount").innerText = "Bitesize Amount: " + amount;
                 document.getElementById("amountValue").innerText =
                     "+ $" + amountCost.toFixed(2) +
                     " (" + amount + " x $" + amountCoefficient.toFixed(2) + ")";
             }else {
+                //display amount on the page
+                document.getElementById("getAmount").innerText = "";
                 document.getElementById("amountValue").innerText = "";
             }
         }
@@ -140,14 +148,20 @@ function updateOrdSumm(fieldData, field)
     }
     // bite size NOT selected then set proper price and message
     else {
-        amountCost = 0;
         document.getElementById("getAmount").innerText = "";
+        document.getElementById("amountValue").innerText = "";
     }
 //____________________________________________________________________________________________________________//
 
 
-    // Calculate total cost
-    let totalCost = typeCost + wholeWheatCost + toppingsCost + amountCost;
+    // Calculate total cost for bitesize
+    if(document.getElementById("Bitesize").checked) {
+        totalCost = typeCost + wholeWheatCost + toppingsCost + amountCost;
+    }
+    //for regular and stuffed
+    else {
+        totalCost = typeCost + wholeWheatCost + toppingsCost;
+    }
 
     // Set total cost ot appropriate format
     let costDisplay = "Total: $" + totalCost.toFixed(2);
@@ -155,3 +169,4 @@ function updateOrdSumm(fieldData, field)
     // Display total cost on html page
     document.getElementById("pretzelCost").innerText = costDisplay;
 }
+
