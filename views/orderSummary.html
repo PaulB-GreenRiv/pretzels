@@ -21,9 +21,9 @@
         <h2>Order To: {{ @SESSION.customer->getFName() }} {{ @SESSION.customer->getLName() }}</h2>
         <h3>( {{ @SESSION.customer->getAddressNum() }}, {{ @SESSION.customer->getStreet() }} )
             {{ @SESSION.customer->getCityCounty() }} {{ @SESSION.customer->getState() }}
-            , phone: {{ @SESSION.customer->getPhone() }}</h3>
+            , phone: {{ @SESSION.customer->getPhone() }}</h3><br>
 
-        <h3 id="summPretzType">Pretzel Type:
+        <h2 id="summPretzType">Pretzel Type:
             <check if="{{ !@SESSION.pretzel instanceof StuffedPretzel && !@SESSION.pretzel instanceof PretzelBites }}">
                 Regular Pretzel
             </check>
@@ -33,7 +33,7 @@
             <check if="{{ @SESSION.pretzel instanceof PretzelBites }}">
                 Pretzel Bites
             </check>
-        </h3>
+        </h2>
         <h3 id="summWholWheat">Whole Wheat: {{ @SESSION.pretzel->getWholeWheat() }}</h3>
         <h3>Toppings: {{ implode(", ", @SESSION.pretzel->getToppings()) }}</h3>
         <p id="summToppings"></p>
@@ -46,10 +46,10 @@
             <h3 id="summSauce">Dipping Sauce: {{ @SESSION.pretzel->getSauce() }}</h3>
             <h3 id="summBitesAmnt">Amount of Bites: {{ @SESSION.pretzel->getAmount() }}</h3>
         </check>
+        <br>
 
         <h1>Your order number is: {{ @pretzID }}</h1>
-        <h1>Pretzel Saved as: {{ @test }}</h1>
-        <h2 id="TotalPrice">Price: {{ @pretzCost }}</h2>
+        <h2 id="TotalPrice">Total Cost: {{ @pretzCost }}</h2>
     </div>
 
 
