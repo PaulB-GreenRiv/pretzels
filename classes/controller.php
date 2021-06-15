@@ -287,7 +287,7 @@ class Controller
         // Put result in hive
         $this->_f3->set('result', $result);
 
-        if ($fullDetails) {
+        if ($fullDetails) { //If user searched by name, display user information
             // Sets User attributes if user searched by name
             $getID = $result[0]['order_id'];
             $getName = ($result[0]['first_name'] . " " . $result[0]['last_name']);
@@ -299,6 +299,8 @@ class Controller
             $this->_f3->set('getID', $getID);
             $this->_f3->set('getName', $getName);
             $this->_f3->set('getAddress', $getAddress);
+        } else {    // Otherwise, display selected order number
+            $this->_f3->set('searchID', $ordNum);
         }
 
         // display the Profile page
