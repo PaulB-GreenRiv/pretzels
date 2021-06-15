@@ -30,30 +30,45 @@ function updateOrdSumm(fieldData, field)
 
     // Whole wheat totalCost ($1 whole wheat)
 //============================================================================================================//
-    if (field === 'wholeWheat') {
+    if (field === 'wholeWheat' || field === 'type') {
         let getCheckBox = document.getElementById("isWholeWheat").checked;
         if (getCheckBox) {
-            wholeWheatCost = 1.00
-            document.getElementById("getWheat").innerHTML = "Whole Wheat";
-            document.getElementById("wheatValue").innerHTML = "+ $" + wholeWheatCost.toFixed(2);
 
-            //change amount cost if whole wheat is selected
-            amountCoefficient = 0.25;
-            amountCost = (amount * amountCoefficient);
-
-            // If Bitesize selected. Display correct message for bitesize, since coefficient was changed
-            if(document.getElementById("Bitesize").checked) {
-                //display amount on the page
-                document.getElementById("getAmount").innerText = "Bitesize Amount: " + amount;
-                document.getElementById("amountValue").innerText =
-                    "+ $" + amountCost.toFixed(2) +
-                    " (" + amount + " x $" + amountCoefficient.toFixed(2) + ")";
-            }else {
-                //display amount on the page
-                document.getElementById("getAmount").innerText = "";
-                document.getElementById("amountValue").innerText = "";
+            // For regular and stuffed cost +$1
+            if(!document.getElementById("Bitesize").checked) {
+                wholeWheatCost = 1.00
+                document.getElementById("getWheat").innerHTML = "Whole Wheat";
+                document.getElementById("wheatValue").innerHTML = "+ $" + wholeWheatCost.toFixed(2);
             }
+
+            // for bitesize, increase cost (coefficient) from $0.2 to $0.25
+            else {
+                //change amount cost if whole wheat is selected
+                amountCoefficient = 0.25;
+                amountCost = (amount * amountCoefficient);
+
+                //Display the message
+                document.getElementById("getWheat").innerHTML = "Whole Wheat";
+                document.getElementById("wheatValue").innerHTML =
+                    "+ $" + amountCoefficient.toFixed(2) + " for each" ;
+
+                // If Bitesize selected. Display correct message for bitesize, since coefficient was changed
+                if (document.getElementById("Bitesize").checked) {
+                    //display amount on the page
+                    document.getElementById("getAmount").innerText = "Bitesize Amount: " + amount;
+                    document.getElementById("amountValue").innerText =
+                        "+ $" + amountCost.toFixed(2) +
+                        " (" + amount + " x $" + amountCoefficient.toFixed(2) + ")";
+                } else {
+                    //display amount on the page
+                    document.getElementById("getAmount").innerText = "";
+                    document.getElementById("amountValue").innerText = "";
+                }
+            }
+
         }
+
+        // if whole wheat is NOT selected
         else {
             wholeWheatCost = 0
             document.getElementById("getWheat").innerHTML = "";
@@ -78,6 +93,8 @@ function updateOrdSumm(fieldData, field)
             }
         }
     }
+
+
 //____________________________________________________________________________________________________________//
 
 
@@ -156,7 +173,7 @@ function updateOrdSumm(fieldData, field)
 
     // Calculate total cost for bitesize
     if(document.getElementById("Bitesize").checked) {
-        totalCost = typeCost + wholeWheatCost + toppingsCost + amountCost;
+        totalCost = typeCost + toppingsCost + amountCost;
     }
     //for regular and stuffed
     else {
