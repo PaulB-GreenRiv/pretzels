@@ -55,3 +55,14 @@
     min-height: max-content;
 
 }
+
+.vh-83 {
+    height: 83vh;
+}
+
+.vh-88 {
+    height: 88vh;
+}
+.vh-90 {
+    min-height: 90vh;
+}
