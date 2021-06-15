@@ -7,24 +7,49 @@
 </head>
 <body>
 <include href="views/includes/mainNavBar.html"/>
-    <div class="vh-90" id="mainPage">
+    <div class="vh-90 bg-light" id="mainPage">
         <div class="" id="squishPage">
-            <h1 ><strong>P</strong>ower <strong>P</strong>retzels!</h1>
-            <p>Making beloved pretzels since a few days ago!</p>
-            <div class="image-container">
-                <img src="images/introPretzel.jpg" id="introPretzel">
+            <h1 class="text-center"><strong>P</strong>ower <strong>P</strong>retzels!</h1>
+            <p class="text-center">Making beloved pretzels since a few days ago!</p>
+            <div class="image-container class">
+                <img src="images/introPretzel.jpg" id="introPretzel" class="zoom">
                 <p class="position-absolute h1 text-light bg-darker-rounded">The best pretzels you have ever tasted!</p>
             </div>
-            <h2>Quotes from satisfied customers:</h2>
 
-            <div class="container" id="quotes">
-                <ul>
-                    <li>*Tumbleweed*</li>
-                </ul>
+
+            <div class="container">
+                <div class="d-flex justify-content-center">
+                    <a type="button" class="btn btn-primary zoom font-x-large" href="order" id="startOrder">
+                        Order Your Pretzels Now!</a>
+                </div>
+
+                <h2>Quotes from satisfied customers:</h2>
+
+                <div class="container rounded quotes shadow bg-white m-1 p-3">
+                    <blockquote class="blockquote">
+                        <p class="mb-3">So yummy!!</p>
+                        <footer class="blockquote-footer">Yurii</cite></footer>
+                    </blockquote>
+                </div>
+
+                <div class="container rounded quotes shadow bg-white m-1 p-3">
+                    <blockquote class="blockquote">
+                        <p class="mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                        <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+                    </blockquote>
+                </div>
+
+                <div class="container rounded quotes shadow bg-white m-1 p-3">
+                    <blockquote class="blockquote">
+                        <p class="mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                        <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+                    </blockquote>
+                </div>
+
+                <br>
+
+
             </div>
-            <br>
-            <a type="button" class="btn btn-primary zoom font-x-large" href="order" id="startOrder">
-                Order Pretzels Now!</a>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"

@@ -1,11 +1,13 @@
 .err{
     color: darkred;
 }
-
+/*
 #mainPage {
     align-content: center;
     text-align: center;
 }
+*/
+
 /*
 #mainPage #mainNav {
     background-color: darkgray;
@@ -33,11 +35,11 @@
     border-radius: 10px;
 }
 */
-#quotes {
+.quotes {
     border: 1px solid lightgray;
 }
 
-#quotes li {
+.quotes li {
     list-style-type: none;
 }
 
