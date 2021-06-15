@@ -109,7 +109,7 @@ function updateOrdSumm(fieldData, field)
             "Toppings: " + toppingsSelected.join(" + ");
 
         document.getElementById("toppingsValue").innerHTML =
-            "+ $" + toppingsCost + " (" + toppingsSelected.length + " x $0.25)"
+            "+ $" + toppingsCost.toFixed(2) + " (" + toppingsSelected.length + " x $0.25)"
     }
 //____________________________________________________________________________________________________________//
 
