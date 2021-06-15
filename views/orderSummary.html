@@ -8,8 +8,8 @@
 <body>
     <include href="views/includes/mainNavBar.html"/>
 
-    <h1>Order Summary</h1>
-    <div class="container vh-83" id="orderSumm">
+    <h1 class="text-center">Order Summary</h1>
+    <div class="container vh-83 bg-light border rounded shadow p-3 px-5 mb-3" id="orderSumm">
         <!--
             Pretzel Type
             is it Whole Wheat?
@@ -62,14 +62,15 @@
         </check>
         <br>
 
-        <h1>Your order number is: {{ @pretzID }}</h1>
-        <h2 id="TotalPrice">Total Cost: {{ @pretzCost }}</h2>
+        <h1 class="text-center">Your order number is: {{ @pretzID }}</h1>
+        <h2 id="TotalPrice" class="text-center">Total Cost: <b>${{ @pretzCost }}</b></h2>
 
         <br>
-
-        <a type="button" class="btn btn-secondary zoom font-x-large" href="home" id="goHome">Home Page</a>
-        <a type="button" class="btn btn-primary zoom font-x-large" href="order" id="goOrder">Order Again</a>
-        <a type="button" class="btn btn-info zoom font-x-large" href="searchBy" id="goOrders">Check Orders</a>
+        <div class="d-flex justify-content-center">
+            <a type="button" class="btn btn-secondary zoom font-x-large mx-1" href="home" id="goHome">Home Page</a>
+            <a type="button" class="btn btn-primary zoom font-x-large mx-1" href="order" id="goOrder">Order Again</a>
+            <a type="button" class="btn btn-info zoom font-x-large mx-1" href="searchBy" id="goOrders">Check Orders</a>
+        </div>
     </div>
 
 
