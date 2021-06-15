@@ -8,7 +8,7 @@
 <body>
 <include href="views/includes/mainNavBar.html"/>
 
-<div class="container h-100 vh-90">
+<div class="container h-100 vh-90 shadow bg-light">
 
     <div>
         <check if="{{ $fullDetails == true && !empty(@result) }}">
@@ -17,7 +17,7 @@
         <check if="{{ $fullDetails == false }}">
             <h1 class="text-center">Here is your Order! #{{ @searchID }}</h1>
         </check>
-        <check if="{{ empty(@result) }}"><h1>Sorry, no data exists!</h1></check>
+        <check if="{{ empty(@result) }}"><h1 class="text-center p-5">Sorry, no data exists!</h1></check>
 
         <div id="userInfo_div">
 
