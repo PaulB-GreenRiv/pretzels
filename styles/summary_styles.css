@@ -1,0 +1,11 @@
+body{
+    background-image: url("../images/summary-bg.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.opacity-90{
+    opacity: 93%;
+}
