@@ -25,9 +25,9 @@ This site allows users to remotely order Stuffed, Bitesize or Regular pretzels. 
 :heavy_check_mark: 6. Uses OOP, and defines multiple classes, including at least one inheritance relationship.
   * Utilizes a customer class, and a Pretzel class with two child classes (Stuffed and Bitesize)
 
-7. Contains full Docblocks for all PHP files and follows PEAR standards.
+:heavy_check_mark: 7. Contains full Docblocks for all PHP files and follows PEAR standards.
   * PHP Code Contains Docblocks 
-  * PEAR checkup to come
+  * Complies with PEAR standards
 
 :heavy_check_mark: 8. Has full validation on the client side through JavaScript and server side through PHP.
   * Utilizes server side validation for the pretzel and customer forms
